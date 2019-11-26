@@ -44,13 +44,7 @@
 	function AddUtilisateur()
 	{
 		global $conn;
-		/*$name = $_POST["name"];
-		$description = $_POST["description"];
-		$price = $_POST["price"];
-		$category = $_POST["category"];
-		$created = date('Y-m-d H:i:s');
-		$modified = date('Y-m-d H:i:s');*/
-
+		
 		// GET DATA FROM REQUEST
 		$data = json_decode(file_get_contents("php://input"));
 		$nom = $data->nom;

@@ -44,16 +44,10 @@
 	function AddTransaction()
 	{
 		global $conn;
-		/*$name = $_POST["name"];
-		$description = $_POST["description"];
-		$price = $_POST["price"];
-		$category = $_POST["category"];
-		$created = date('Y-m-d H:i:s');
-		$modified = date('Y-m-d H:i:s');*/
-
+		
 		// GET DATA FROM REQUEST
 		$data = json_decode(file_get_contents("php://input"));
-		$date_transaction = date('Y-m-d H:i:s');
+		$date_transaction = $data->date_transaction;
 		$type_transaction = $data->type_transaction;
 		$montant_transaction = $data->montant_transaction;
 		$id_client = $data->id_client;
