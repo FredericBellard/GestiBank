@@ -9,10 +9,10 @@
 	include("db_connect.php");
 	$request_method = $_SERVER["REQUEST_METHOD"];
 
-	function getTransactions()
+	function getHistoriques()
 	{
 		global $conn;
-		$query = "SELECT * FROM transaction";
+		$query = "SELECT * FROM historique";
 		$response = array();
 		$result = mysqli_query($conn, $query);
 		while($row = mysqli_fetch_array($result))
@@ -23,13 +23,13 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 	
-	function getTransaction($num_transaction=0)
+	function getHistorique($id_histo=0)
 	{
 		global $conn;
-		$query = "SELECT * FROM transaction";
-		if($num_transaction != 0)
+		$query = "SELECT * FROM historique";
+		if($id_histo != 0)
 		{
-			$query .= " WHERE num_transaction=".$num_transaction." LIMIT 1";
+			$query .= " WHERE id_histo=".$id_histo." LIMIT 1";
 		}
 		$response = array();
 		$result = mysqli_query($conn, $query);
@@ -41,23 +41,25 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 	
-	function AddTransaction()
+	function AddHistorique()
 	{
 		global $conn;
 		
 		// GET DATA FROM REQUEST
 		$data = json_decode(file_get_contents("php://input"));
-		$date_transaction = $data->date_transaction;
-		$type_transaction = $data->type_transaction;
-		$montant_transaction = $data->montant_transaction;
-		$id_client = $data->id_client;
-				
-		echo $query="INSERT INTO transaction (date_transaction, type_transaction, montant_transaction, id_client) VALUES('".$date_transaction."', '".$type_transaction."', '".$montant_transaction."', '".$id_client."')";
+		$date_operation = $data->date_operation;
+		$nature_operation = $data->nature_operation;
+		$debit = $data->debit;
+		$credit = $data->credit;
+		$num_compte = $data->num_compte;
+		$num_transaction = $data->num_transaction;
+		
+		echo $query="INSERT INTO historique(date_operation, nature_operation, debit, credit, num_compte, num_transaction) VALUES('".$date_operation."', '".$nature_operation."', '".$debit."', '".$credit."', '".$num_compte."', '".$num_transaction."')";
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Transaction ajoutée avec succès.'
+				'status_message' =>'Elément ajouté avec succès.'
 			);
 		}
 		else
@@ -71,49 +73,51 @@
 		echo json_encode($response);
 	}
 	
-	function updateTransaction($num_transaction)
+	function updateHistorique($id_histo)
 	{
 		global $conn;
 		$data = json_decode(file_get_contents("php://input"),true);
-		$date_transaction = $data["date_transaction"];
-		$type_transaction = $data["type_transaction"];
-		$montant_transaction = $data["montant_transaction"];
-		$id_client = $data["id_client"];
-		$query="UPDATE transaction SET date_transaction='".$date_transaction."', type_transaction='".$type_transaction."', montant_transaction='".$montant_transaction."', id_client='".$id_client."' WHERE num_transaction=".$num_transaction;
+		$date_operation = $data["date_operation"];
+		$nature_operation = $data["nature_operation"];
+		$debit = $data["debit"];
+		$credit = $data["credit"];
+		$num_compte = $data["num_compte"];
+		$num_transaction = $data["num_transaction"];
+		$query="UPDATE historique SET date_operation='".$date_operation."', nature_operation='".$nature_operation."', debit='".$debit."', credit='".$credit."', num_compte='".$num_compte."', num_transaction='".$num_transaction."' WHERE id_histo=".$id_histo;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Transaction mise à jour avec succès.'
+				'status_message' =>'Historique mis à jour avec succès.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'échec de la mise à jour de la transaction. '. mysqli_error($conn)
+				'status_message' =>'échec de la mise à jour de l_historique. '. mysqli_error($conn)
 			);
 		}
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
 	
-	function deleteTransaction($num_transaction)
+	function deleteHistorique($id_histo)
 	{
 		global $conn;
-		$query = "DELETE FROM transaction WHERE num_transaction=".$num_transaction;
+		$query = "DELETE FROM historique WHERE id_histo=".$id_histo;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Transaction supprimée avec succès.'
+				'status_message' =>'Elément supprimé avec succès.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'La suppression de la transaction a échoué. '. mysqli_error($conn)
+				'status_message' =>'La suppression de l_élément a échoué. '. mysqli_error($conn)
 			);
 		}
 		header('Content-Type: application/json');
@@ -125,14 +129,15 @@
 	{
 		
 		case 'GET':
-			if(!empty($_GET["num_transaction"]))
+			// Récupérer un ou plusieurs éléments dans l'historique
+			if(!empty($_GET["id_histo"]))
 			{
-				$num_transaction=intval($_GET["num_transaction"]);
-				getTransaction($num_transaction);
+				$id_histo=intval($_GET["id_histo"]);
+				getHistorique($id_histo);
 			}
 			else
 			{
-				getTransactions();
+				getHistoriques();
 			}
 			break;
 		default:
@@ -141,20 +146,20 @@
 			break;
 			
 		case 'POST':
-			// Ajouter une transaction
-			AddTransaction();
+			// Ajouter un élément
+			AddHistorique();
 			break;
 			
 		case 'PUT':
-			// Modifier une transaction
-			$num_transaction = intval($_GET["num_transaction"]);
-			updateTransaction($num_transaction);
+			// Modifier un élément
+			$id_histo = intval($_GET["id_histo"]);
+			updateHistorique($id_histo);
 			break;
 			
 		case 'DELETE':
-			// Supprimer une transaction
-			$num_transaction = intval($_GET["num_transaction"]);
-			deleteTransaction($num_transaction);
+			// Supprimer un élément
+			$id_histo = intval($_GET["id_histo"]);
+			deleteHistorique($id_histo);
 			break;
 
 	}
