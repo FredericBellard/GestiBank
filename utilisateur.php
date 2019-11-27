@@ -49,13 +49,13 @@
 		$data = json_decode(file_get_contents("php://input"));
 		$nom = $data->nom;
 		$prenom = $data->prenom;
-		$adresse = $data->adresse;
+		$id_adresse = $data->id_adresse;
 		$tel_user = $data->tel_user;
 		$email = $data->email;
 		$password = $data->password;
 		$type_user = $data->type_user;
 		
-		echo $query="INSERT INTO utilisateur(nom, prenom, adresse, tel_user, email, password, type_user) VALUES('".$nom."', '".$prenom."', '".$adresse."', '".$tel_user."', '".$email."', '".$password."', '".$type_user."')";
+		echo $query="INSERT INTO utilisateur(nom, prenom, id_adresse, tel_user, email, password, type_user) VALUES('".$nom."', '".$prenom."', '".$id_adresse."', '".$tel_user."', '".$email."', '".$password."', '".$type_user."')";
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
@@ -80,12 +80,12 @@
 		$data = json_decode(file_get_contents("php://input"),true);
 		$nom = $data["nom"];
 		$prenom = $data["prenom"];
-		$adresse = $data["adresse"];
+		$id_adresse = $data["id_adresse"];
 		$tel_user = $data["tel_user"];
 		$email = $data["email"];
 		$password = $data["password"];
 		$type_user = $data["type_user"];
-		$query="UPDATE utilisateur SET nom='".$nom."', prenom='".$prenom."', adresse='".$adresse."', tel_user='".$tel_user."', email='".$email."', password='".$password."', type_user='".$type_user."' WHERE id_user=".$id_user;
+		$query="UPDATE utilisateur SET nom='".$nom."', prenom='".$prenom."', id_adresse='".$id_adresse."', tel_user='".$tel_user."', email='".$email."', password='".$password."', type_user='".$type_user."' WHERE id_user=".$id_user;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
