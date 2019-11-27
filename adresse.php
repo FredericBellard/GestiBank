@@ -9,10 +9,10 @@
 	include("db_connect.php");
 	$request_method = $_SERVER["REQUEST_METHOD"];
 
-	function getClients()
+	function getAdresses()
 	{
 		global $conn;
-		$query = "SELECT * FROM client";
+		$query = "SELECT * FROM adresse";
 		$response = array();
 		$result = mysqli_query($conn, $query);
 		while($row = mysqli_fetch_array($result))
@@ -22,14 +22,14 @@
 		header('Content-Type: application/json');
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
-	
-	function getClient($id_client=0)
-	{
-		global $conn;
-		$query = "SELECT * FROM client";
-		if($id_client != 0)
+
+	function getAdresse($id_adresse=0)
+    {
+        global $conn;
+		$query = "SELECT * FROM adresse";
+		if($id_adresse != 0)
 		{
-	        $query .= " WHERE id_client=".$id_client." LIMIT 1";
+			$query .= " WHERE id_adresse=".$id_adresse." LIMIT 1";
 		}
 		$response = array();
 		$result = mysqli_query($conn, $query);
@@ -38,11 +38,10 @@
 			$response[] = $row;
 		}
 		header('Content-Type: application/json');
-		echo json_encode($response, JSON_PRETTY_PRINT);	
+		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 
-
-	function AddClient()
+	function AddAdresse()
 	{
 		global $conn;
 		/*$name = $_POST["name"];
@@ -54,17 +53,18 @@
 
 		// GET DATA FORM REQUEST
 		$data = json_decode(file_get_contents("php://input"));
-		$pieces_justif= $data->pieces_justif;
-		$mle_conseiller = $data->mle_conseiller;
+		$num_rue = $data->num_rue;
+		$nom_rue = $data->nom_rue;
+		$code_postal = $data->code_postal;
+		$ville = $data->ville;
 		$id_user = $data->id_user;
 		
-		
-		echo $query="INSERT INTO client (pieces_justif, mle_conseiller, id_user) VALUES('".$pieces_justif."', '".$mle_conseiller."', '".$id_user."')";
+		echo $query="INSERT INTO adresse (num_rue,nom_rue ,code_postal , ville, id_user) VALUES('".$num_rue."', '".$nom_rue."', '".$code_postal."', '".$ville."','".$id_user."')";
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'client ajouté avec succès.'
+				'status_message' =>'Adresse ajouté avec succès.'
 			);
 		}
 		else
@@ -78,48 +78,50 @@
 		echo json_encode($response);
 	}
 	
-	function updateClient($id_client)
+	function updateAdresse($id_adresse)
 	{
 		global $conn;
 		$data = json_decode(file_get_contents("php://input"),true);
-		$pieces_justif= $data["pieces_justif"];
-		$mle_conseiller = $data["mle_conseiller"];
+		$num_rue = $data["num_adresse"];
+		$nom_rue = $data["num_rue"];
+		$code_postal  = $data["code_postal "];
+		$ville = $data["ville"];
 		$id_user = $data["id_user"];
-		$query="UPDATE client SET pieces_justif ='".$pieces_justif."', mle_conseiller='".$mle_conseiller."', id_user='".$id_user."' WHERE id_client=".$id_client;
+		$query="UPDATE adresse SET num_rue ='".$num_rue."', nom_rue='".$nom_rue."', code_postal ='".$code_postal ."', ville='".$ville."', id_user='".$id_user."' WHERE id_adresse =".$id_adresse;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'client mis à jour avec succès.'
+				'status_message' =>'Adresse mis à jour avec succès.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'échec de la mise à jour de l_client. '. mysqli_error($conn)
+				'status_message' =>'échec de la mise à jour de l_utilisateur. '. mysqli_error($conn)
 			);
 		}
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
 	
-	function deleteClient($id_client)
+	function deleteAdresse($id_adresse)
 	{
 		global $conn;
-		$query = "DELETE FROM client WHERE id_client=".$id_client;
+		$query = "DELETE FROM adresee WHERE id_adresse=".$id_adresse;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'client supprimé avec succès.'
+				'status_message' =>'Adresse supprimé avec succès.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'La suppression de l_client a échoué. '. mysqli_error($conn)
+				'status_message' =>'La suppression de l_Adresse a échoué. '. mysqli_error($conn)
 			);
 		}
 		header('Content-Type: application/json');
@@ -132,14 +134,14 @@
 		
 		case 'GET':
 			// Retrive Products
-			if(!empty($_GET["id_client"]))
+			if(!empty($_GET["id_adresse"]))
 			{
-				$id_user=intval($_GET["id_client"]);
-				getClient($id_client);
+				$id_adresse=intval($_GET["id_adresse"]);
+				getAdresse($id_adresse);
 			}
 			else
 			{
-				getClients();
+				getAdresses();
 			}
 			break;
 		default:
@@ -149,19 +151,19 @@
 			
 		case 'POST':
 			// Ajouter un produit
-			AddClient();
+			AddAdresse();
 			break;
 			
 		case 'PUT':
 			// Modifier un produit
-			$id_client = intval($_GET["id_client"]);
-			updateClient($id_client);
+			$id_adresse = intval($_GET["id_adresse"]);
+			updateAdresse($id_adresse);
 			break;
 			
 		case 'DELETE':
 			// Supprimer un produit
-			$id_client = intval($_GET["id_client"]);
-			deleteClient($id_client);
+			$id_adresse = intval($_GET["id_adresse"]);
+			deleteAdresee($id_adresse);
 			break;
 
 	}
