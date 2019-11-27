@@ -8,8 +8,9 @@
 	// Connect to database
 	include("db_connect.php");
 	$request_method = $_SERVER["REQUEST_METHOD"];
+
    //get All Demande_Client
-	function getDemande_clients()
+	function getDemandeClients()
 	{
 		global $conn;
 		$query = "SELECT * FROM demande_client";
@@ -24,17 +25,31 @@
 		header('Content-Type: application/json');
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
-	//Ajouter un élément dans la table demande_client
-	function AddDemande_clients()
+
+	// Récupérer une demande par la référence de la demande
+	function getDemandeClient($ref_demande=0)
 	{
 		global $conn;
-		/*$name = $_POST["name"];
-		$description = $_POST["description"];
-		$price = $_POST["price"];
-		$category = $_POST["category"];
-		$created = date('Y-m-d H:i:s');
-		$modified = date('Y-m-d H:i:s');*/
+		$query = "SELECT * FROM demande_client";
+		if($ref_demande != 0)
+		{
+			$query .= " WHERE ref_demande=".$ref_demande." LIMIT 1";
+		}
+		$response = array();
+		$result = mysqli_query($conn, $query);
+		while($row = mysqli_fetch_array($result))
+		{
+			$response[] = $row;
+		}
+		header('Content-Type: application/json');
+		echo json_encode($response, JSON_PRETTY_PRINT);
+	}
 
+	//Ajouter un élément dans la table demande_client
+	function AddDemandeClients()
+	{
+		global $conn;
+		
 		// GET DATA FORM REQUEST
 		$data = json_decode(file_get_contents("php://input"));
 		$date_demande = $data->date_demande;
@@ -61,14 +76,14 @@
 		echo json_encode($response);
 	}
 	//mettre à jour un élement dans la table demande_client
-	function updateDemande_clients($ref_demande)
+	function updateDemandeClients($ref_demande)
 	{
 		global $conn;
         $data = json_decode(file_get_contents("php://input"),true);
-        $date_demande= $data->date_demande;
-		$type_demande= $data->type_demande;
-		$id_client= $data->id_client;
-		
+
+		$date_demande = $data["date_demande"];
+		$type_demande = $data["type_demande"];
+		$id_client = $data["id_client"];
 
 		$query="UPDATE demande_client SET date_demande='".$date_demande."', type_demande='".$type_demande."', id_client='".$id_client."' WHERE ref_demande=".$ref_demande;
 		if(mysqli_query($conn, $query))
@@ -88,11 +103,12 @@
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
-	//supprimer un élément
-	function deleteDemande_clients($ref_demande)
+
+	// Supprimer un élément
+	function deleteDemandeClients($ref_demande)
 	{
 		global $conn;
-		$query = "DELETE * FROM demande_client WHERE ref_demande=".$ref_demande;
+		$query = "DELETE FROM demande_client WHERE ref_demande=".$ref_demande;
 		if(mysqli_query($conn, $query))
 		{
 		$response=array(
@@ -110,21 +126,20 @@
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
-	global $ref_demande;
+	
 	// Orchestration des différentes fonctions
 	switch($request_method)
 	{
 		
 		case 'GET':
-		// Retrive Products
-		if(!empty($_GET["$ref_demande"]))
+		if(!empty($_GET["ref_demande"]))
 		{
 		$ref_demande=intval($_GET["ref_demande"]);
-		getDemande_client($ref_demande);
+		getDemandeClient($ref_demande);
 		}
 		else
 		{
-		getDemande_clients();
+		getDemandeClients();
 		}
 		break;
 		default:
@@ -133,20 +148,20 @@
 		break;
 		
 		case 'POST':
-		// Ajouter un élement 
-		AddDemande_clients();
+		// Ajouter une demande 
+		AddDemandeClients();
 		break;
 		
 		case 'PUT':
-		// Modifier un produit
+		// Modifier une demande
 		$ref_demande= intval($_GET["ref_demande"]);
-		updateDemande_clients($ref_demande);
+		updateDemandeClients($ref_demande);
 		break;
 		
 		case 'DELETE':
-		// Supprimer un produit
+		// Supprimer une demande
 		$ref_demande= intval($_GET["ref_demande"]);
-		deleteDemande_clients($ref_demande);
+		deleteDemandeClients($ref_demande);
 		break;
 
 	}
