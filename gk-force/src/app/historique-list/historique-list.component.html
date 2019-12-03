@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col">
+    
+    <section>
+    <p>
+        <a>LISTE DES HISTORIQUES</a>
+    </p>
+    </section>
+    <section class="main">
+    <table class="table">
+            <thead>
+                <tr>
+                   <th>Identifiant</th>
+                   <th>Date de l'operation</th>
+                   <th>Nature de l'operation</th>
+                   <th>Débit</th>
+                   <th>Crédit</th>
+                   <th>Numéro de compte</th>
+                   <th>Numéro de transaction</th>                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let h of historique">
+                    <td>{{h.id_histo}}</td>
+                    <td>{{h.date_operation}}</td>
+                    <td>{{h.nature_operation}}</td>
+                    <td>{{h.debit}}</td>
+	                <td>{{h.credit}}</td>
+	                <td>{{h.num_compte}}</td>
+	                <td>{{h.num_transaction}}</td>
+                </tr>
+                    <label>Solde du compte : </label>
+                    <label>0,00</label>
+            </tbody>
+        </table>
+        </section>
+    
+        </div>
+    </div>
