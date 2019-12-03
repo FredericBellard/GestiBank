@@ -21,30 +21,60 @@
 		$nom_rue = $data->nom_rue;
 		$code_postal = $data->code_postal;
 		$ville = $data->ville;
+		$id_user=$data->id_user;
+		$id_client=$data->id_client;
         $tel_user = $data->tel_user;
 		$email = $data->email;
 		$password = $data->password;
 		$type_user = $data->type_user;
 		$date_deb_contrat = $data->date_deb_contrat;
+		$id_adresse=$data->id_adresse;
 	
-	echo $query="INSERT INTO utilisateur (nom,prenom,tel_user,email,password,type_user) VALUES('".$nom."', '".$prenom."', '".$tel_user."', '".$email."','".$password."','".$type_user."')";	
-	echo $query="INSERT INTO adresse (num_rue,nom_rue,code_postal,ville) VALUES('".$num_rue."', '".$nom_rue."', '".$code_postal."', '".$ville."')";	
-	echo $query="INSERT INTO conseiller (date_deb_contrat) VALUES('".$date_deb_contrat."')";	
-
+		$query="INSERT INTO utilisateur (nom,prenom,id_adresse,tel_user,email,password,type_user) VALUES('".$nom."', '".$prenom."', '".$id_adresse."', '".$tel_user."', '".$email."','".$password."','".$type_user."')";	
 		if(mysqli_query($conn, $query))
 		{
-		$response=array(
-		'status' => 1,
-		'status_message' =>'Votre demande a bien été prise en compte.'
-		);
+			$query="INSERT INTO adresse (num_rue,nom_rue,code_postal,ville, id_user) VALUES('".$num_rue."', '".$nom_rue."', '".$code_postal."', '".$ville."', '".$id_user."')";	
+			if(mysqli_query($conn, $query))
+			{
+				$query="INSERT INTO conseiller (date_deb_contrat,id_user,id_client) VALUES('".$date_deb_contrat."', '".$id_user."', '".$id_client."')";	
+				if(mysqli_query($conn, $query))
+					{
+						$response=array
+						(
+							'status' => 1,
+							'status_message' =>'Votre demande a bien été prise en compte.'
+						);
+					}
+				else
+					{
+						$response=array
+						(
+						'status' => 0,
+						'status_message' =>'ERREUR!.'. mysqli_error($conn)
+						);
+						echo $query;
+					}
+			}
+			else
+				{
+					$response=array
+					(
+					'status' => 0,
+					'status_message' =>'ERREUR!.'. mysqli_error($conn)
+					);
+				}
+			
 		}
 		else
 		{
-		$response=array(
-		'status' => 0,
-		'status_message' =>'ERREUR!.'. mysqli_error($conn)
-		);
+			$response=array
+			(
+			'status' => 0,
+			'status_message' =>'ERREUR!.'. mysqli_error($conn)
+			);
 		}
+
+
 		header('Content-Type: application/json');
 		echo json_encode($response);
 	}
@@ -55,5 +85,5 @@
 			// Ajouter un conseiller
 			creerConseiller();
 			break;
-     }
+    }
 ?>
