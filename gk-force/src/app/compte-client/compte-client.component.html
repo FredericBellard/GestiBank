@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col">
+    
+    <section>
+    <p>
+        <a>COMPTE DU CLIENT</a>
+    </p>
+    </section>
+    <section class="main">
+    <table class="table">
+            <thead>
+                <tr>
+                   <th>Numéro de compte</th>
+                   <th>Rib</th>
+                   <th>Date de création</th>
+                   <th>Solde</th>
+                   <th>Type de compte</th>
+                   <th>Numéro de client</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of compte">
+                    <td>{{c.id_compte}}</td>
+                    <td>{{c.rib}}</td>
+                    <td>{{c.date_creation}}</td>
+                    <td>{{c.solde}}</td>
+	                <td>{{c.type_compte}}</td>
+	                <td>{{c.id_client}}</td>
+                </tr>
+                    <label>Solde du compte : </label>
+                    <label>0,00</label>
+            </tbody>
+        </table>
+        </section>
+    
+        </div>
+    </div>
+

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { url } from 'inspector';
 
 @Component({
   selector: 'app-root',

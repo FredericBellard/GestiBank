@@ -9,8 +9,8 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { EspaceClientComponent } from './espace-client/espace-client.component';
+import { CompteClientComponent } from './compte-client/compte-client.component';
 import { OperationComponent } from './operation/operation.component';
-import { HistoriqueListComponent } from './historique-list/historique-list.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +19,9 @@ import { HistoriqueListComponent } from './historique-list/historique-list.compo
     InscriptionComponent,
     ConnexionComponent,
     EspaceClientComponent,
-    OperationComponent,
-    HistoriqueListComponent
+    CompteClientComponent,
+    OperationComponent
+    
   ],
   imports: [
     BrowserModule,
