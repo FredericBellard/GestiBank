@@ -23,7 +23,7 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 	
-	function getAdmistrateur($mle_admin=0)
+	function getAdmistrateur($mle_admin)
 	{
 		global $conn;
 		$query = "SELECT * FROM administrateur";

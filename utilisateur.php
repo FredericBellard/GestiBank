@@ -23,7 +23,7 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 	
-	function getUtilisateur($id_user=0)
+	function getUtilisateur($id_user)
 	{
 		global $conn;
 		$query = "SELECT * FROM utilisateur";
@@ -48,20 +48,19 @@
 		// GET DATA FROM REQUEST
 		$data = json_decode(file_get_contents("php://input"));
 		$nom = $data->nom;
-		$prenom = $data->prenom;
-		$id_adresse = $data->id_adresse;
-		$tel_user = $data->tel_user;
 		$email = $data->email;
 		$password = $data->password;
-		$type_user = $data->type_user;
-		
-		echo $query="INSERT INTO utilisateur(nom, prenom, id_adresse, tel_user, email, password, type_user) VALUES('".$nom."', '".$prenom."', '".$id_adresse."', '".$tel_user."', '".$email."', '".$password."', '".$type_user."')";
+		$role = $data->role;
+		$id_user=-1;
+	
+		echo $query="INSERT INTO utilisateur(nom, email, password, role) VALUES('".$nom."', '".$email."','".$password."', '".$role."')";
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
 				'status_message' =>'Utilisateur ajouté avec succès.'
 			);
+			$id_user=$conn->insert_id;
 		}
 		else
 		{
@@ -72,6 +71,7 @@
 		}
 		header('Content-Type: application/json');
 		echo json_encode($response);
+		return id_user;
 	}
 	
 	function updateUtilisateur($id_user)
@@ -79,13 +79,10 @@
 		global $conn;
 		$data = json_decode(file_get_contents("php://input"),true);
 		$nom = $data["nom"];
-		$prenom = $data["prenom"];
-		$id_adresse = $data["id_adresse"];
-		$tel_user = $data["tel_user"];
 		$email = $data["email"];
 		$password = $data["password"];
-		$type_user = $data["type_user"];
-		$query="UPDATE utilisateur SET nom='".$nom."', prenom='".$prenom."', id_adresse='".$id_adresse."', tel_user='".$tel_user."', email='".$email."', password='".$password."', type_user='".$type_user."' WHERE id_user=".$id_user;
+		$role = $data["role"];
+		$query="UPDATE utilisateur SET nom='".$nom."', email='".$email."', password='".$password."', role='".$role."' WHERE id_user=".$id_user;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(

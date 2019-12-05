@@ -28,13 +28,13 @@
 		
 	}
 	
-	function getCompte($num_compte=0)
+	function getCompte($id_compte)
 	{
 		global $conn;
 		$query = "SELECT * FROM compte";
 		if($num_compte != 0)
 		{
-			$query .= " WHERE num_compte=".$num_compte." LIMIT 1";
+			$query .= " WHERE id_compte=".$id_compte." LIMIT 1";
 		}
 		$response = array();
 		$result = mysqli_query($conn, $query);
@@ -52,13 +52,15 @@
 
 		// GET DATA FORM REQUEST
 		$data = json_decode(file_get_contents("php://input"));
-		$num_compte=$data->num_compte;
+		$id_compte=$data->id_compte;
+		$rib = $data->rib;
 		$date_creation = $data->date_creation;
 		$solde = $data->solde;
+		$type_compte =$data->type_compte;
 		$id_client = $data->id_client;
 		
-		echo $query="INSERT INTO compte(num_compte,date_creation,solde,id_client)
-		VALUES('".$num_compte."', '".$date_creation."', '".$solde."', '".$id_client."')";
+		echo $query="INSERT INTO compte(id_compte,rib,date_creation,solde,type_compte,id_client)
+		VALUES('".$id_compte."','".$rib."','".$date_creation."', '".$solde."',,'".	$type_compte."' '".$id_client."')";
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
@@ -78,15 +80,17 @@
 		print_r($response);
 	}
 
-	function updateCompte($num_compte)
+	function updateCompte($id_compte)
 	{
 		global $conn;
 		$data = json_decode(file_get_contents("php://input"),true);
+		$rib = $data["rib"];
 		$date_creation = $data["date_creation"];
 		$solde = $data["solde"];
+		$type_compte =$data["type_compte"];
 		$id_client = $data["id_client"];
 
-		$query="UPDATE compte SET date_creation='".$date_creation."', solde=".$solde.", id_client=".$id_client. " WHERE num_compte=".$num_compte;
+		$query="UPDATE compte SET rib='".$rib."',date_creation='".$date_creation."', solde=".$solde.",type_compte='".$type_compte."', id_client=".$id_client. " WHERE id_compte=".$id_compte;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
@@ -105,10 +109,10 @@
 		echo json_encode($response);
 	}
 	
-	function deleteCompte($num_compte)
+	function deleteCompte($id_compte)
 	{
 		global $conn;
-		$query = "DELETE FROM compte WHERE num_compte=".$num_compte;
+		$query = "DELETE FROM compte WHERE id_compte=".$id_compte;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
@@ -133,10 +137,10 @@
 		
 		case 'GET':
 			// Retrive Products
-			if(!empty($_GET["num_compte"]))
+			if(!empty($_GET["id_compte"]))
 			{
-				$num_compte=intval($_GET["num_compte"]);
-				getCompte($num_compte);
+				$id_compte=intval($_GET["id_compte"]);
+				getCompte($id_compte);
 			}
 			else
 			{
@@ -155,14 +159,14 @@
 			
 		case 'PUT':
 			// Modifier un compte
-			$num_compte = intval($_GET["num_compte"]);
+			$id_compte = intval($_GET["id_compte"]);
 			updateCompte($num_compte);
 			break;
 			
 		case 'DELETE':
 			// Supprimer un compte
-			$num_compte = intval($_GET["num_compte"]);
-			deleteCompte($num_compte);
+			$id_compte = intval($_GET["id_compte"]);
+			deleteCompte($id_compte);
 			break;
 
 	}

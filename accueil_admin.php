@@ -9,64 +9,50 @@
 	include("db_connect.php");
 	$request_method = $_SERVER["REQUEST_METHOD"];
 	
-	function creerConseiller(){
     global $conn;
 		
 		// Ajouter les informations sur un conseiller
-		$data = json_decode(file_get_contents("php://input"));
-		
-		$nom = $data->nom;
-        $prenom = $data->prenom;
-		$num_rue = $data->num_rue;
-		$nom_rue = $data->nom_rue;
-		$code_postal = $data->code_postal;
-		$ville = $data->ville;
-		$id_user=$data->id_user;
-		$id_client=$data->id_client;
-        $tel_user = $data->tel_user;
-		$email = $data->email;
+		//$data = json_decode(file_get_contents("php://input"));
+			
+/* 		$nom = $data->nom;
+		$prenom = $data->prenom;
+		$email=$data->email;
+		$mle_conseiller = $data->mle_conseiller;
+		$pseudonyme = $data->pseudonyme;
 		$password = $data->password;
-		$type_user = $data->type_user;
-		$date_deb_contrat = $data->date_deb_contrat;
-		$id_adresse=$data->id_adresse;
+		$date_deb_contrat = $data->date_deb_contrat; */
 	
-		$query="INSERT INTO utilisateur (nom,prenom,id_adresse,tel_user,email,password,type_user) VALUES('".$nom."', '".$prenom."', '".$id_adresse."', '".$tel_user."', '".$email."','".$password."','".$type_user."')";	
+		$nom = $_POST["nom"];
+		$prenom = $_POST["prenom"];
+		$email = $_POST["email"];
+		$mle_conseiller = $_POST["mle_conseiller"];
+		$pseudonyme = $_POST["pseudonyme"];
+		$password = $_POST["password"];
+		$date_deb_contrat = $_POST["date_deb_contrat"];
+		$role =1;
+		$id_user=-1;
+	
+		$query="INSERT INTO utilisateur (nom,prenom,email,pseudonyme,password,role) VALUES('".$nom."', '".$prenom."', '".$email."','".$pseudonyme."','".$password."','".$role."')";	
 		if(mysqli_query($conn, $query))
 		{
-			$query="INSERT INTO adresse (num_rue,nom_rue,code_postal,ville, id_user) VALUES('".$num_rue."', '".$nom_rue."', '".$code_postal."', '".$ville."', '".$id_user."')";	
+			$id_user=$conn->insert_id;
+			$query="INSERT INTO conseiller (date_deb_contrat,id_user,mle_conseiller) VALUES('".$date_deb_contrat."', '".$id_user."', '".$mle_conseiller."')";	
 			if(mysqli_query($conn, $query))
-			{
-				$query="INSERT INTO conseiller (date_deb_contrat,id_user,id_client) VALUES('".$date_deb_contrat."', '".$id_user."', '".$id_client."')";	
-				if(mysqli_query($conn, $query))
 					{
 						$response=array
 						(
 							'status' => 1,
 							'status_message' =>'Votre demande a bien été prise en compte.'
 						);
-					}
-				else
-					{
+			}else{
 						$response=array
 						(
 						'status' => 0,
 						'status_message' =>'ERREUR!.'. mysqli_error($conn)
 						);
 						echo $query;
-					}
-			}
-			else
-				{
-					$response=array
-					(
-					'status' => 0,
-					'status_message' =>'ERREUR!.'. mysqli_error($conn)
-					);
-				}
-			
-		}
-		else
-		{
+					}	
+		}else{
 			$response=array
 			(
 			'status' => 0,
@@ -75,15 +61,6 @@
 		}
 
 
-		header('Content-Type: application/json');
-		echo json_encode($response);
-	}
-
-    switch($request_method)
-	{			
-		case 'POST':
-			// Ajouter un conseiller
-			creerConseiller();
-			break;
-    }
+	//	header('Content-Type: application/json');
+	//	echo json_encode($response);
 ?>

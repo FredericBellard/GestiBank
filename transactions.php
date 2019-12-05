@@ -23,7 +23,7 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 	
-	function getTransaction($num_transaction=0)
+	function getTransaction($num_transaction)
 	{
 		global $conn;
 		$query = "SELECT * FROM transactions";

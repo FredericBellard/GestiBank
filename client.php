@@ -23,7 +23,7 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 	
-	function getClient($id_client=0)
+	function getClient($id_client)
 	{
 		global $conn;
 		$query = "SELECT * FROM client";
@@ -54,18 +54,23 @@
 
 		// GET DATA FORM REQUEST
 		$data = json_decode(file_get_contents("php://input"));
-		$pieces_justif= $data->pieces_justif;
-		$mle_conseiller = $data->mle_conseiller;
 		$id_user = $data->id_user;
+		$adresse = $data->adresse;
+		$id_document = $data->id_document;
+		$telephone = $data->telephone;
+		$num_enfants = $data->num_enfants;
+		$sit_matrimon = $data->sit_matrimon;
+		$id_client=-1;
 		
 		
-		echo $query="INSERT INTO client (pieces_justif, mle_conseiller, id_user) VALUES('".$pieces_justif."', '".$mle_conseiller."', '".$id_user."')";
+		echo $query="INSERT INTO client (id_user,adresse, id_document,telephone, num_enfants, sit_matrimon) VALUES('".$id_user."', '".$adresse."', '".$id_document."', '".$telephone."', '".$num_enfants."', '".$sit_matrimon."')";
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
 				'status_message' =>'client ajouté avec succès.'
 			);
+			$id_client=$conn->insert_id;
 		}
 		else
 		{
@@ -82,10 +87,14 @@
 	{
 		global $conn;
 		$data = json_decode(file_get_contents("php://input"),true);
-		$pieces_justif= $data["pieces_justif"];
-		$mle_conseiller = $data["mle_conseiller"];
+		$id_conseiller= $data["id_conseiller"];
 		$id_user = $data["id_user"];
-		$query="UPDATE client SET pieces_justif ='".$pieces_justif."', mle_conseiller='".$mle_conseiller."', id_user='".$id_user."' WHERE id_client=".$id_client;
+		$adresse = $data["adresse"];
+		$id_document = $data["id_document"];
+		$telephone = $data["telephone"];
+		$num_enfants = $data["num_enfants"];
+		$sit_matrimon = $data["sit_matrimon"];
+		$query="UPDATE client SET id_user ='".$id_user."',adresse='".$adresse."', id_document='".id_document."', telephone ='".$telephone."', num_enfants='".$num_enfants."', sit_matrimon='".$sit_matrimon."' WHERE id_client=".$id_client;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(

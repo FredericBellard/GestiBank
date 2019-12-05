@@ -23,7 +23,7 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 	
-	function getNotification($ref_notif=0)
+	function getNotification($ref_notif)
 	{
 		global $conn;
 		$query = "SELECT * FROM notification";

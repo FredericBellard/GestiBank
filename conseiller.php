@@ -28,13 +28,13 @@
 		
 	}
 	
-	function getConseiller($mle_conseiller=0)
+	function getConseiller($id_conseiller=0)
 	{
 		global $conn;
 		$query = "SELECT * FROM conseiller";
 		if($mle_conseiller != 0)
 		{
-			$query .= " WHERE mle_conseiller=".$mle_conseiller." LIMIT 1";
+			$query .= " WHERE id_conseiller=".$id_conseiller." LIMIT 1";
 		}
 		$response = array();
 		$result = mysqli_query($conn, $query);
@@ -56,16 +56,18 @@
 		$data = json_decode(file_get_contents("php://input"));
 		$mle_conseiller = $data->mle_conseiller;
 		$date_deb_contrat = $data->date_deb_contrat;
-		$id_client = $data->id_client;
+		$id_user = $data->id_user;
+		$id_conseiller=-1;
 		
-		echo $query="INSERT INTO conseiller(mle_conseiller,date_deb_contrat,id_client)
-		VALUES('".$mle_conseiller."', '".$date_deb_contrat."', '".$id_client."')";
+		echo $query="INSERT INTO conseiller(mle_conseiller,date_deb_contrat,id_user)
+		VALUES('".$$mle_conseiller."', '".$date_deb_contrat."', '".$id_user."')";
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
 				'status_message' =>'Conseiller ajouté avec succès.'
 			);
+			$id_conseiller=$conn->insert_id;
 		}
 		else
 		{
@@ -78,17 +80,19 @@
 		echo json_encode($response);
 	}
 
-	function updateConseiller($mle_conseiller)
+	function updateConseiller($id_conseiller)
 	{
 		global $conn;
 		$data = json_decode(file_get_contents("php://input"),true);
 		$date_deb_contrat = $data["date_deb_contrat"];
-		$id_client = $data["id_client"];
+		$mle_conseiller = $data["mle_conseiller"];
+		$id_user = $data["id_user"];
 
-		$query="UPDATE conseiller SET date_deb_contrat='".$date_deb_contrat."', id_client=".$id_client." WHERE mle_conseiller=".$mle_conseiller;
+		$query="UPDATE conseiller SET date_deb_contrat='".$date_deb_contrat."',mle_conseiller='".$mle_conseiller."',  id_user=".$id_user." WHERE id_conseiller=".$id_conseiller;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
+				
 				'status' => 1,
 				'status_message' =>'Conseiller mis à jour avec succès.'
 			);
@@ -104,10 +108,10 @@
 		echo json_encode($response);
 	}
 	
-	function deleteConseiller($mle_conseiller)
+	function deleteConseiller($id_conseiller)
 	{
 		global $conn;
-		$query = "DELETE FROM conseiller WHERE mle_conseiller=".$mle_conseiller;
+		$query = "DELETE FROM conseiller WHERE id_conseiller=".$id_conseiller;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
@@ -132,10 +136,10 @@
 		
 		case 'GET':
 			// Retrive Products
-			if(!empty($_GET["mle_conseiller"]))
+			if(!empty($_GET["id_conseiller"]))
 			{
-				$mle_conseiller=intval($_GET["mle_conseiller"]);
-				getConseiller($mle_conseiller);
+				$id_conseiller=intval($_GET["id_conseiller"]);
+				getConseiller($id_conseiller);
 			}
 			else
 			{
@@ -154,14 +158,14 @@
 			
 		case 'PUT':
 			// Modifier un produit
-			$mle_conseiller = intval($_GET["mle_conseiller"]);
-			updateConseiller($mle_conseiller);
+			$id_conseiller = intval($_GET["id_conseiller"]);
+			updateConseiller($id_conseiller);
 			break;
 			
 		case 'DELETE':
 			// Supprimer un produit
-			$mle_conseiller = intval($_GET["mle_conseiller"]);
-			deleteConseiller($mle_conseiller);
+			$id_conseiller = intval($_GET["id_conseiller"]);
+			deleteConseiller($id_conseiller);
 			break;
 
 	}
