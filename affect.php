@@ -15,7 +15,7 @@
     global $conn;
 
     $query="SELECT demande_client.date_demande,demande_client.type_demande,
-        client.adresse,client.telephone,client.sit_matrimon, client.id_conseiller,
+      client.id_client, client.adresse,client.telephone,client.sit_matrimon, client.id_conseiller,
         utilisateur.nom,utilisateur.prenom,utilisateur.email,utilisateur.pseudonyme,
         utilisateur.password,utilisateur.role
     FROM demande_client
@@ -24,6 +24,7 @@
     where client.id_conseiller=-1 or utilisateur.pseudonyme in('', null) or utilisateur.password in('', null)";
         
     if ($result = mysqli_query($conn, $query)) {
+  
         echo "
         <table>
             <tr>
@@ -51,7 +52,8 @@
             echo "<td> <input name='pseudonyme' type='text' value='" . $obj->pseudonyme . "'></td>";
             echo "<td> <input name='password' type='text' value='" . $obj->password . "'></td>";
             $optionsConseillers = optionsConseillers($obj->id_conseiller);
-            echo "<td> <select>" . $optionsConseillers . "</select></td>";
+            echo "<td> <select name='conseillers'>" . $optionsConseillers . "</select></td>";
+            echo "<td> <input type='hidden' name='idclient' value=".$obj->id_client. "></td>";
             echo "<td style='border-style: none;'><input type='submit' value='Save' /></td>";
             echo "</tr>";
         }
@@ -73,7 +75,7 @@
                 if($id_conseiller==$row[0]){
                     $selected_option="selected";
                 }
-                $response .= "<option ".$selected_option." id='$row[0]'>".$row[1]." | ".$row[2]." ".$row[3]."</option>";
+                $response .= "<option ".$selected_option." id= '$row[0]' value= '$row[0]'>".$row[1]." | ".$row[2]." ".$row[3]."</option>";
                 
         }else {
             echo mysqli_error($conn);
