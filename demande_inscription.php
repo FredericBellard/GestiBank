@@ -9,7 +9,7 @@
 	include("db_connect.php");
 	$request_method = $_SERVER["REQUEST_METHOD"];
 	
-	function getListDemandeUtilisateur(){
+	function getListDemandeUtilisateur()
         {
             global $conn;
             $query = "SELECT * FROM demande_client";

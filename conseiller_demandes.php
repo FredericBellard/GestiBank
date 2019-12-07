@@ -16,7 +16,7 @@
 		INNER JOIN client c ON u.id_user=c.id_user 
 		INNER JOIN demande_client ON c.id_client=demande_client.id_client 
 		INNER JOIN compte ON c.id_client=compte.id_client 
-		WHERE (role='0' AND type_demande='0')";
+		WHERE (type_user='0' AND type_demande='0')";
 		$response = array();
 		$result = mysqli_query($conn, $query);
 		
@@ -29,41 +29,6 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 
-	// Orchestration des différentes fonctions
-	switch($request_method)
-	{
-		case 'GET':
-			// Récupérer les demandes
-			if(!empty($_GET["ref_demande"]))
-			{
-				$ref_demande=intval($_GET["ref_demande"]);
-				getDemande($ref_demande);
-			}
-			else
-			{
-				getDemandes();
-			}
-			break;
-		default:
-			// Invalid Request Method
-			header("HTTP/1.0 405 Method Not Allowed");
-			break;
-			
-		case 'POST':
-			// Ajouter une demande
-			AddDemande();
-			break;
-			
-		case 'PUT':
-			// Modifier une demande
-			$ref_demande = intval($_GET["ref_demande"]);
-			updateDemande($ref_demande);
-			break;
-			
-		case 'DELETE':
-			// Supprimer une demande
-			$ref_demande = intval($_GET["ref_demande"]);
-			deleteDemande($ref_demande);
-			break;
-	}
+	getDemandes();
+	
 ?>
