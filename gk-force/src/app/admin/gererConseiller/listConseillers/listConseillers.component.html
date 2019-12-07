@@ -1,3 +1,20 @@
+
+<section>
+<nav>
+    <ul>
+     
+      <button><li  routerLink="/accueil"  class="btn btn-primary">Accueil</li></button>
+
+    </ul>
+  </nav>
+
+
+
+<div class="container spacer">
+<router-outlet></router-outlet>
+</div>
+
+
 <div class='card'>
         <div class='card-header'>
           {{pageTitle}}
@@ -7,7 +24,7 @@
             <div class='col-md-2'>Filtrer par:</div>
             <div class='col-md-4'>
               <input type='text'
-                     [(ngModel)]='listFilter' />
+                     [(ngModel)]='listFiltrer' />
             </div>
             <div class='col-md-6'>
                     <button class='btn btn-primary' 
@@ -27,7 +44,6 @@
                 </tr>
               </thead>
               <tr *ngFor='let conseiller of conseillers'>
-              
                 <td>{{conseiller.conseillerMle}}</td>
                 <td>{{conseiller.conseillerNom}}</td>
                 <td>{{conseiller.conseillerPrenom}}</td>
@@ -40,3 +56,4 @@
            class='alert alert-danger'>
         Error: {{ errorMessage }}
       </div>
+    </section>

@@ -8,13 +8,16 @@ import{Component, OnInit} from '@angular/core';
 
 export class ListConseillersComponent implements OnInit {
 pageTitle: string= 'Liste Conseillers';
+listFiltrer:string = 'Nom';
 conseillers: any[] =[
   {
+    "":"",
     "conseillerMle":"123",
     "conseillerNom": "Blanc",
     "conseillerPrenom": "Ion"
   },
   {
+    "":"",
     "conseillerMle":"124",
     "conseillerNom": "Noir",
     "conseillerPrenom": "Ileana"
