@@ -8,5 +8,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 
 export class AppComponent{
-  title = 'gk-force';
+ pageTitle: string = 'gk-force';
 }

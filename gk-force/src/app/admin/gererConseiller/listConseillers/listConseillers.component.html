@@ -1,0 +1,59 @@
+
+<section>
+<nav>
+    <ul>
+     
+      <button><li  routerLink="/accueil"  class="btn btn-primary">Accueil</li></button>
+
+    </ul>
+  </nav>
+
+
+
+<div class="container spacer">
+<router-outlet></router-outlet>
+</div>
+
+
+<div class='card'>
+        <div class='card-header'>
+          {{pageTitle}}
+        </div>
+        <div class='card-body'>
+          <div class='row'>
+            <div class='col-md-2'>Filtrer par:</div>
+            <div class='col-md-4'>
+              <input type='text'
+                     [(ngModel)]='listFiltrer' />
+            </div>
+            <div class='col-md-6'>
+                    <button class='btn btn-primary' 
+                        (click)='createConseiller()'>
+                        Creation Conseiller
+                    </button>
+            </div>
+          </div>
+  
+          <div class='table-responsive'>
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th>Matricule</th>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                </tr>
+              </thead>
+              <tr *ngFor='let conseiller of conseillers'>
+                <td>{{conseiller.conseillerMle}}</td>
+                <td>{{conseiller.conseillerNom}}</td>
+                <td>{{conseiller.conseillerPrenom}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div *ngIf='errorMessage'
+           class='alert alert-danger'>
+        Error: {{ errorMessage }}
+      </div>
+    </section>
