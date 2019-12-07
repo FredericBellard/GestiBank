@@ -1,0 +1,20 @@
+<h1>Espace Conseiller</h1>
+<section>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a routerLink="/demandes" class="nav-link active" id="demandes" data-toggle="tab" href="#demandes" role="tab" aria-controls="demandes" aria-selected="true">Demandes à traiter</a>
+  </li>
+  <li class="nav-item">
+    <a routerLink="/comptes-courants" class="nav-link" id="comptes-courants" data-toggle="tab" href="#comptes-courants" role="tab" aria-controls="comptes-courants" aria-selected="false">Comptes Courants</a>
+  </li>
+  <li class="nav-item">
+    <a routerLink="/comptes-rems" class="nav-link" id="comptes-rems" data-toggle="tab" href="#comptes-rems" role="tab" aria-controls="comptes-rems" aria-selected="false">Comptes Rémunérés</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="demandes" role="tabpanel" aria-labelledby="demandes-tab">...</div>
+  <div class="tab-pane fade" id="comptes-courants" role="tabpanel" aria-labelledby="courants-tab">...</div>
+  <div class="tab-pane fade" id="comptes-rems" role="tabpanel" aria-labelledby="rems-tab">...</div>
+</div>  
+<router-outlet></router-outlet>
+</section>

@@ -1,0 +1,31 @@
+<h2>Comptes Courants</h2>
+
+<section>
+        <nav>
+            <ul>
+                <button><li routerLink="/conseiller" class="btn btn-primary">Retour</li></button>
+            </ul>
+        </nav>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Numéro de Compte</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date d'Ouverture du Compte</th>
+                    <th>Solde</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of comptesCourants">
+                    <td>{{c.id_compte}}</td>
+                    <td>{{c.nom}}</td>
+                    <td>{{c.prenom}}</td>
+                    <td>{{c.date_creation}}</td>                        
+                    <td>{{c.solde}}</td>                        
+                    <button type="button" class="btn btn-primary">Ouvrir</button>
+                </tr>
+            </tbody>
+        </table>
+</section>
