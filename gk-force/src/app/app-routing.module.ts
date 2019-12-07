@@ -9,6 +9,7 @@ import { OperationComponent } from './operation/operation.component';
 import { ConseillerComponent } from './conseiller/conseiller.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AffecterConseillerComponent } from './admin/affecterConseiller/affecterConseiller.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'connexion', component: ConnexionComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'admin/gererConseiller', component: GererConseillerComponent },
+  { path: 'admin/affecterConseiller', component: AffecterConseillerComponent},
   { path: 'espace-client', component: EspaceClientComponent },
   { path: 'compte-client', component: CompteClientComponent },
   { path: 'operation', component: OperationComponent },

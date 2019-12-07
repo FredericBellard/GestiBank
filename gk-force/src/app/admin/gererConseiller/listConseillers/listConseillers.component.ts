@@ -1,4 +1,3 @@
-
 import{Component, OnInit} from '@angular/core';
 
 @Component({
@@ -27,10 +26,7 @@ constructor() { }
   ngOnInit() {
 }
 
-public createConseiller() {
-  alert('ALoooooo');
+public createConseiller() {}
 } 
-
-}
   
 
