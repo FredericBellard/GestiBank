@@ -1,0 +1,34 @@
+<h2>Demandes à traiter</h2>
+
+<section>
+    <nav>
+        <ul>
+            <button><li routerLink="/conseiller" class="btn btn-primary">Retour</li></button>
+        </ul>
+    </nav>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numéro de Demande</th>
+                <th>Date de la Demande</th>
+                <th>Identifiant Utilisateur</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Type de Compte</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of demandes">
+                <td>{{d.ref_demande}}</td>
+                <td>{{d.date_demande}}</td>
+                <td>{{d.id_user}}</td>
+                <td>{{d.nom}}</td>
+                <td>{{d.prenom}}</td>                        
+                <td *ngIf="d.type_compte==0">Compte Courant</td>
+                <td *ngIf="d.type_compte==1">Compte Rémunéré</td>
+                <button type="button" class="btn btn-primary">Ouvrir</button>
+            </tr>
+        </tbody>
+    </table>
+</section>

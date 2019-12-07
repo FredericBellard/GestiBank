@@ -1,0 +1,38 @@
+<h2>Comptes Rémunérés</h2>
+
+<section>
+        <nav>
+            <ul>
+                <button><li routerLink="/conseiller" class="btn btn-primary">Retour</li></button>
+            </ul>
+        </nav>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Numéro de Compte</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date d'Ouverture du Compte</th>
+                    <th>Taux d'Intérêt</th>
+                    <th>Facilité de Caisse</th>
+                    <th>Montant Débit</th>
+                    <th>Solde</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r of comptesRems">
+                    <td>{{r.id_compte}}</td>
+                    <td>{{r.nom}}</td>
+                    <td>{{r.prenom}}</td>
+                    <td>{{r.date_creation}}</td>
+                    <td>{{r.taux_interet}}</td>
+                    <td *ngIf="r.facilite_caisse==0">Non</td>
+                    <td *ngIf="r.facilite_caisse==1">Oui</td>                       
+                    <td>{{r.montant_debit}}</td>                                                
+                    <td>{{r.solde}}</td>                        
+                    <button type="button" class="btn btn-primary">Ouvrir</button>
+                </tr>
+            </tbody>
+        </table>
+</section>

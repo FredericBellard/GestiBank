@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import{HttpClientModule} from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,16 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { EspaceClientComponent } from './espace-client/espace-client.component';
 import { CompteClientComponent } from './compte-client/compte-client.component';
 import { OperationComponent } from './operation/operation.component';
+import { ConseillerComponent } from './conseiller/conseiller.component';
+import { ListDemandesComponent } from './conseiller/list-demandes/list-demandes.component';
+import { ListComptesCourantsComponent } from './conseiller/list-comptes-courants/list-comptes-courants.component';
+import { ListComptesRemsComponent } from './conseiller/list-comptes-rems/list-comptes-rems.component';
+
+const appRoutesConseillers: Routes = [
+  { path: 'demandes', component: ListDemandesComponent },
+  { path: 'comptes-courants', component: ListComptesCourantsComponent },
+  { path: 'comptes-rems', component: ListComptesRemsComponent },
+];
 
 @NgModule({
   declarations: [
@@ -20,15 +31,28 @@ import { OperationComponent } from './operation/operation.component';
     ConnexionComponent,
     EspaceClientComponent,
     CompteClientComponent,
-    OperationComponent
+    OperationComponent,
+    ConseillerComponent,
+    ListDemandesComponent,
+    ListComptesCourantsComponent,
+    ListComptesRemsComponent
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot(appRoutesConseillers)
   ],
+
+  //declarations: [
+    //AppComponent,
+    //ListDemandesComponent,
+    //ListComptesCourantsComponent,
+    //ListComptesRemsComponent,
+  //],
+
   providers: [],
   bootstrap: [AppComponent]
 })
