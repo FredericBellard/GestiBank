@@ -15,7 +15,7 @@
 		FROM compte ct 
 		INNER JOIN client c ON ct.id_client=c.id_client
 		INNER JOIN utilisateur u ON c.id_user=u.id_user 
-		WHERE type_compte=1";
+		WHERE type_compte=1 AND date_creation is not NULL";
 		$response = array();
 		$result = mysqli_query($conn, $query);
 		

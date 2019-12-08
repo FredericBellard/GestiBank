@@ -12,7 +12,6 @@
 	function creerClient(){
     global $conn;
 		
-		// Ajouter les informations sur un conseiller
 		$data = json_decode(file_get_contents("php://input"));
 		
 		$nom = $data->nom;

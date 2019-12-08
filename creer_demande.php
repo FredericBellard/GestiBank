@@ -10,16 +10,13 @@
     include("creer_client.php");
 	$request_method = $_SERVER["REQUEST_METHOD"];
 	
-	function creerCompte(){
+	function creerDemande(){
     global $conn;
 		
 		$data = json_decode(file_get_contents("php://input"));
 		
 		$date_demande = $data->date_demande;
         $type_demande = $data->type_demande;
-		$numero_compte = $data->numero_compte;
-		$date_creation = $data->date_creation;
-		$solde = $data->solde;
         $type_compte = $data->type_compte;
                 
         $query="SELECT max(id_client) AS id_client FROM client";
@@ -31,7 +28,7 @@
 		$query="INSERT INTO demande_client(date_demande,type_demande,id_client) VALUES('".$date_demande."', '".$type_demande."', '".$id_client."')";	
 		if(mysqli_query($conn, $query))
 		{
-            $query="INSERT INTO compte (numero_compte,date_creation,solde,type_compte,id_client) VALUES('".$numero_compte."', '".$date_creation."', '".$solde."', '".$type_compte."', '".$id_client."')";	
+            $query="INSERT INTO compte (numero_compte,date_creation,solde,type_compte,id_client) VALUES(NULL, NULL,NULL, '".$type_compte."', '".$id_client."')";	
 			if(mysqli_query($conn, $query))
 			{
 				$response=array
@@ -64,6 +61,6 @@
 		echo json_encode($response);
     }
     
-    creerCompte();
+    creerDemande();
 
 ?>
