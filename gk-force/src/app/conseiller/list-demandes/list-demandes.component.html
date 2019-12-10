@@ -25,9 +25,9 @@
                 <td>{{d.id_user}}</td>
                 <td>{{d.nom}}</td>
                 <td>{{d.prenom}}</td>                        
-                <td *ngIf="d.type_compte==0">Compte Courant</td>
-                <td *ngIf="d.type_compte==1">Compte Rémunéré</td>
-                <button type="button" class="btn btn-primary">Ouvrir</button>
+                <td *ngIf="d.type_compte==0">Compte Rémunéré</td>
+                <td *ngIf="d.type_compte==1">Compte Courant</td>
+                <a [routerLink] = "['/details-demande',d.ref_demande]" class="btn btn-primary">Ouvrir</a>
             </tr>
         </tbody>
     </table>

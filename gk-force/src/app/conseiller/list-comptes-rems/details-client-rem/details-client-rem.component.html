@@ -1,0 +1,41 @@
+<h2>Fiche Client</h2>
+
+<section *ngFor="let dr of detailsClientsRem">
+    <nav>
+        <ul>
+            <button><li routerLink="/comptes-rems" class="btn btn-primary">Retour</li></button>
+        </ul>
+    </nav>
+    <div>
+        <p>Numéro de Compte : {{dr.numero_compte}}</p>
+        <hr>
+        <p>Date de Création du Compte : {{dr.date_creation}}</p>
+        <hr>
+        <p>Nom : {{dr.nom}}</p>
+        <hr>
+        <p>Prénom : {{dr.prenom}}</p>
+        <hr>
+        <p>Adresse : {{dr.num_rue}}, {{dr.nom_rue}}</p>
+        <hr>
+        <p>Code Postal : {{dr.code_postal}}</p>
+        <hr>
+        <p>Ville : {{dr.ville}}</p>
+        <hr>
+        <p>Téléphone : {{dr.telephone}}</p>
+        <hr>
+        <p *ngIf="dr.statut=='d'">Situation Familiale : Divorcé(e)</p>
+        <p *ngIf="dr.statut=='m'">Situation Familiale : Marié(e)</p>
+        <p *ngIf="dr.statut=='c'">Situation Familiale : Célibataire</p>
+        <p *ngIf="dr.statut=='v'">Situation Familiale : Veuf/Veuve</p>
+        <hr>
+        <p>Nombre d'Enfants : {{dr.nb_enfants}}</p>
+        <hr>
+        <p>Taux d'Intérêt : {{dr.taux_interet}}%</p>
+        <hr>
+        <p *ngIf="dr.facilite_caisse==0">Facilité de Caisse : Non</p>
+        <p *ngIf="dr.facilite_caisse==1">Facilité de Caisse : Oui</p>  
+        <hr>
+        <p>Montant Débit : {{dr.montant_debit}}</p>
+        <hr>
+    </div>
+</section>

@@ -7,10 +7,16 @@ import { EspaceClientComponent } from './espace-client/espace-client.component';
 import { CompteClientComponent } from './compte-client/compte-client.component';
 import { OperationComponent } from './operation/operation.component';
 import { ConseillerComponent } from './conseiller/conseiller.component';
+import { ListDemandesComponent } from './conseiller/list-demandes/list-demandes.component';
+import { ListComptesCourantsComponent } from './conseiller/list-comptes-courants/list-comptes-courants.component';
+import { ListComptesRemsComponent } from './conseiller/list-comptes-rems/list-comptes-rems.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AffecterConseillerComponent } from './admin/affecterConseiller/affecterConseiller.component';
-
+import { DetailsClientComponent } from './conseiller/list-comptes-courants/details-client/details-client.component';
+import { DetailsClientRemComponent } from './conseiller/list-comptes-rems/details-client-rem/details-client-rem.component';
+import { DetailsDemandeComponent } from './conseiller/list-demandes/details-demande/details-demande.component';
+import { TraitementDemandesComptesComponent } from './conseiller/list-demandes/details-demande/traitement-demandes-comptes/traitement-demandes-comptes.component';
 
 
 const routes: Routes = [
@@ -24,6 +30,14 @@ const routes: Routes = [
   { path: 'compte-client', component: CompteClientComponent },
   { path: 'operation', component: OperationComponent },
   { path: 'conseiller', component: ConseillerComponent },
+  { path: 'demandes', component: ListDemandesComponent },
+  { path: 'comptes-courants', component: ListComptesCourantsComponent },
+  { path: 'comptes-rems', component: ListComptesRemsComponent },
+  { path: 'details-client/:id', component: DetailsClientComponent },
+  { path: 'details-client-rem/:id', component: DetailsClientRemComponent },
+  { path: 'details-demande/:ref', component: DetailsDemandeComponent},
+  { path: 'traitement-demandes-comptes/:ref', component: TraitementDemandesComptesComponent}, 
+  //{ path: 'details-demande/:ref/validation', component: TraitementDemandesComptesComponent}, 
   { path: '', redirectTo: 'accueil', pathMatch: 'full'}
 
 ];
