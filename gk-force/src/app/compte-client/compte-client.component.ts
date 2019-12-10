@@ -79,10 +79,8 @@ export class CompteClientComponent implements OnInit {
      // this.router.navigate(["/GestionCompteClient",id]);
    this.id=+this.route.snapshot.params['id'];
 
-   console.log("test" + this.id);
    this.serviceGestionCompteClient.findCompteClientById(this.id)
     .subscribe(data=>this.gestionCompteClient=data);
-    console.log("toto" + this.id);
    
   }
 
@@ -96,7 +94,6 @@ export class CompteClientComponent implements OnInit {
 
    // this.router.navigate(["/GestionCompteClient",id]);
    this.id=+this.route.snapshot.params['id'];
-   console.log("toto" + this.id);
    this.serviceGestionCompteClient.findCompteClientById(this.id)
     .subscribe(data=>this.gestionCompteClient=data);
 

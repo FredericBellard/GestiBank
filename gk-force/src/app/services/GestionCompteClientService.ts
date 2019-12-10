@@ -17,7 +17,7 @@ export class GestionCompteClientService
 
     findCompteClientById(id):Observable<GestionCompteClient[]>
     {
-         return this.http.get<GestionCompteClient[]>("http://localhost/GestionCompteClient/client.id_client="+id);
+         return this.http.get<GestionCompteClient[]>("http://localhost/GestionCompteClient/id_client="+id);
         
     }
 
