@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'details-demande/:ref', component: DetailsDemandeComponent},
   { path: 'traitement-demandes-comptes/:ref', component: TraitementDemandesComptesComponent}, 
   //{ path: 'details-demande/:ref/validation', component: TraitementDemandesComptesComponent}, 
-  { path: 'demandes', component: DemandesComponent },
+  { path: 'demandes-client', component: DemandesComponent },
   { path: '', redirectTo: 'accueil', pathMatch: 'full'}
 
 ];
