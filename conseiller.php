@@ -13,7 +13,7 @@
 	function getConseillers()
 	{   
 		global $conn;
-		$query = "SELECT * FROM conseiller";
+		$query = "SELECT * FROM conseiller join utilisateur on conseiller.id_user=utilisateur.id_user";
 		$response = array();
 		$result = mysqli_query($conn, $query);
 		
@@ -53,14 +53,16 @@
 		$id_user = $_POST["id_user"];*/
 
 		// GET DATA FORM REQUEST
-		$data = json_decode(file_get_contents("php://input"));
-		$mle_conseiller = $data->mle_conseiller;
-		$date_deb_contrat = $data->date_deb_contrat;
-		$id_user = $data->id_user;
+		$data = (array) json_decode(file_get_contents("php://input"), true);
+		//echo "$data";
+	
+		$mle_conseiller = $data['mle_conseiller'];
+		$date_deb_contrat = "2001.01.01";
+		$id_user = 14;
 		$id_conseiller=-1;
 		
 		echo $query="INSERT INTO conseiller(mle_conseiller,date_deb_contrat,id_user)
-		VALUES('".$$mle_conseiller."', '".$date_deb_contrat."', '".$id_user."')";
+		VALUES('".$mle_conseiller."', '".$date_deb_contrat."', '".$id_user."')";
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
@@ -77,18 +79,36 @@
 			);
 		}
 		header('Content-Type: application/json');
-		echo json_encode($response);
+		$response['status_code_header'] = 'HTTP/1.1 201 Created';
+        $response['body'] = null;
+		echo ($response);
 	}
 
 	function updateConseiller($id_conseiller)
 	{
 		global $conn;
 		$data = json_decode(file_get_contents("php://input"),true);
+		$id_user= $data ["id_user"];
+		$nom= $data ["nom"];
+		$prenom= $data ["prenom"];
 		$date_deb_contrat = $data["date_deb_contrat"];
 		$mle_conseiller = $data["mle_conseiller"];
-		$id_user = $data["id_user"];
+		$date_deb_contrat= $data ["date_deb_contrat"];
+		$email = $data["email"];
+		$username= $data["username"];
+		$password = $data["password"];
+		$telephone = $data["telephone"];
+		
 
-		$query="UPDATE conseiller SET date_deb_contrat='".$date_deb_contrat."',mle_conseiller='".$mle_conseiller."',  id_user=".$id_user." WHERE id_conseiller=".$id_conseiller;
+
+		$query="UPDATE conseiller  Inner Join utilisateur
+		ON (conseiller.id_user = conseiller.id_user)
+		SET user.nom = '".$nom."', user.prenom = '".$prenom."',  user.email = '".$email."',
+		Where utilisateur.id_user = ".$id_user." AND (conseiller.id_user = $id_user)";
+		
+		/*date_deb_contrat='".$date_deb_contrat."',mle_conseiller='".$mle_conseiller."',  id_user=".$id_user." WHERE id_conseiller=".$id_conseiller;
+
+		*/
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(

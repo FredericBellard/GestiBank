@@ -1,0 +1,65 @@
+<section>
+    <ol class="breadcrumb">
+        <li><a href="accueil" title="Accueil">Accueil/ </a>
+            <a routerLink="/accueil"></a></li>
+        <li><a href="admin" title="Admin">Admin/ </a>
+            <a routerLink="/admin"></a></li>
+        <li><a href="admin/gererConseiller" title="gererConseiller">Gestion_des_conseillers/ </a>
+            <a routerLink="/admin/gererConseiller"></a></li>
+        <li class="active">Creation_des_conseillers</li>
+    </ol>
+    
+    
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-9 register-right">
+                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Creer un Conseiller</h3>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nom *" [(ngModel)]='conseiller.nom' />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="{{conseiller.prenom}}" ngModel prenom="CpPrenom" id="CpPrenom"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="{{conseiller.mle_conseiller}}" ngModel mle_conseiller="CpMle_conseiller" id="CpMle_conseiller"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" placeholder="{{conseiller.date_deb_contrat}}" ngModel date_deb_contrat="CpDate_deb_contrat" id="CpDate_deb_contrat"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="{{conseiller.email}}" ngModel email="CpEmail" id="CpEmail" />
+                                </div>
+                                <div class="form-group">
+                                        <input type="username" class="form-control" placeholder="{{conseiller.username}}" ngModel username="CpUsername" id="CpUsername"/>
+                                    </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="{{conseiller.password}}" ngModel password="CpPassword" id="CpPassword" />
+                                </div>
+                                <div class="form-group">
+                                        <input type="telephone" class="form-control" placeholder="{{conseiller.telephone}}" ngModel telephone="CpTelephone" id="CpTelephone"/>
+                                </div>
+                                <div class="form-group">
+                                        <input type="submit" class="btnRegister" value="Enregistrer" (click)='creerConseiller()'/>
+                                 </div>
+                         </div>
+                             
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container spacer">
+        <router-outlet></router-outlet>
+    </div>
+</section>

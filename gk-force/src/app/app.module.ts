@@ -19,12 +19,11 @@ import { ListDemandesComponent } from './conseiller/list-demandes/list-demandes.
 import { ListComptesCourantsComponent } from './conseiller/list-comptes-courants/list-comptes-courants.component';
 import { ListComptesRemsComponent } from './conseiller/list-comptes-rems/list-comptes-rems.component';
 import { AffecterConseillerComponent } from './admin/affecterConseiller/affecterConseiller.component';
+import { CreerConseillerComponent } from  './admin/gererConseiller/creerConseiller/creerConseiller.component';
 
-const appRoutesConseillers: Routes = [
-  { path: 'demandes', component: ListDemandesComponent },
-  { path: 'comptes-courants', component: ListComptesCourantsComponent },
-  { path: 'comptes-rems', component: ListComptesRemsComponent },
-];
+
+
+
 
 @NgModule({
   declarations: [
@@ -35,6 +34,7 @@ const appRoutesConseillers: Routes = [
     ListConseillersComponent,
     AdminComponent,
     GererConseillerComponent,
+    CreerConseillerComponent,
     AffecterConseillerComponent,
     EspaceClientComponent,
     CompteClientComponent,
@@ -42,14 +42,16 @@ const appRoutesConseillers: Routes = [
     ConseillerComponent,
     ListDemandesComponent,
     ListComptesCourantsComponent,
-    ListComptesRemsComponent
+    ListComptesRemsComponent,
+  
+  
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutesConseillers)
+  //  RouterModule.forRoot(appRoutesConseillers)
   ],
 
   //declarations: [
