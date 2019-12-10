@@ -11,7 +11,7 @@
 	
 	function getComptesRems(){	
     	global $conn;
-		$query = "SELECT cr.id_compte, nom, prenom, date_creation, taux_interet, facilite_caisse, montant_debit, solde 
+		$query = "SELECT id_compte_rem, numero_compte, nom, prenom, date_creation, taux_interet, facilite_caisse, montant_debit, solde 
 		FROM compte ct 
         INNER JOIN compte_rem cr ON ct.id_compte=cr.id_compte
 		INNER JOIN client c ON ct.id_client=c.id_client
@@ -29,41 +29,6 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 
-	// Orchestration des différentes fonctions
-	switch($request_method)
-	{
-		case 'GET':
-			// Récupérer les comptes rémunérés
-			if(!empty($_GET["id_compte"]))
-			{
-				$id_compte=intval($_GET["id_compte"]);
-				getCompteRem($id_compte);
-			}
-			else
-			{
-				getComptesRems();
-			}
-			break;
-		default:
-			// Invalid Request Method
-			header("HTTP/1.0 405 Method Not Allowed");
-			break;
-			
-		case 'POST':
-			// Ajouter un compte rémunéré
-			addCompteRem();
-			break;
-			
-		case 'PUT':
-			// Modifier un compte rémunéré
-			$id_compte = intval($_GET["id_compte"]);
-			updateCompteRem($id_compte);
-			break;
-			
-		case 'DELETE':
-			// Supprimer un compte rémunéré
-			$id_compte = intval($_GET["id_compte"]);
-			deleteCompteRem($id_compte);
-			break;
-	}
+	getComptesRems();
+	
 ?>

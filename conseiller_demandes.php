@@ -16,7 +16,7 @@
 		INNER JOIN client c ON u.id_user=c.id_user 
 		INNER JOIN demande_client ON c.id_client=demande_client.id_client 
 		INNER JOIN compte ON c.id_client=compte.id_client 
-		WHERE (type_user='0' AND type_demande='0')";
+		WHERE (type_user='0' AND type_demande='0' AND date_creation is NULL)";
 		$response = array();
 		$result = mysqli_query($conn, $query);
 		
