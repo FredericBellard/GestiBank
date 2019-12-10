@@ -2,6 +2,7 @@
     <div class="col">
     
     <section>
+        <button routerLink="/espace-client"  class="btn btn-info">Retour</button>
         <p id="titre">COMPTE DU CLIENT {{getAdresseEntete()}}</p>
  
         <div id="adresse">
@@ -15,21 +16,44 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Id compte</th>
                         <th>Numéro de compte</th>
-                        <th>Rib</th>
                         <th>Solde</th>
                         <th>Type de compte</th>
-                    </tr>
+                        <th>Date de la transaction</th>
+                        <th>Type de la transaction</th>
+                        <th>Montant de la transaction</th>
+                    </tr>                   
                     </thead>
                     <tbody>
                         <tr *ngFor="let gc of gestionCompteClient">
                             <td>{{gc.id_compte}}</td>
-                            <td>{{gc.rib}}</td>
+                            <td>{{gc.numero_compte}}</td>
                             <td>{{gc.solde}}</td>
                             <td *ngIf="gc.type_compte==0; then thenR else elseC"></td>
                             <ng-template #thenR>Rémunéré</ng-template>
                             <ng-template #elseC>Courant</ng-template>
-                        </tr>                                
+                            <td>{{gc.date_transaction}}</td>
+                            <td>{{gc.type_transaction}}</td>
+                            <td>{{gc.montant_transaction}}</td>
+                        </tr>  
+                       <!-- <tr *ngFor="let gcd of gestionCompteClientDetail">
+                            <td></td>
+                            <td></td>
+                            <td></td>                               
+                            <td></td> 
+                            <td>{{gcd.date_transaction}}</td>     
+                            <td>{{gcd.type_transaction}}</td>     
+                            <td>{{gcd.montant_transaction}}</td>                                                              
+                        </tr>                            
+                        <tr *ngFor="let gc of gestionCompteClient">
+                            <td (onclick)="getgestionCompteClientId(gc.id_compte)">{{gc.id_compte}}</td>
+                            <td>{{gc.numero_compte}}</td>
+                            <td>{{gc.solde}}</td>
+                            <td *ngIf="gc.type_compte==0; then thenR else elseC"></td>
+                            <td><ng-template #thenR>Rémunéré</ng-template></td>
+                            <td><ng-template #elseC>Courant</ng-template></td>
+                        </tr>    -->                 
                     </tbody>                  
             </table>          
             <p id="solde">SOLDE DU COMPTE {{getTotal()}} €</p>
