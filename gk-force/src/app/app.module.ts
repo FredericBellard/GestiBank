@@ -19,6 +19,7 @@ import { ListDemandesComponent } from './conseiller/list-demandes/list-demandes.
 import { ListComptesCourantsComponent } from './conseiller/list-comptes-courants/list-comptes-courants.component';
 import { ListComptesRemsComponent } from './conseiller/list-comptes-rems/list-comptes-rems.component';
 import { AffecterConseillerComponent } from './admin/affecterConseiller/affecterConseiller.component';
+import { DemandesComponent } from './demandes/demandes.component';
 
 const appRoutesConseillers: Routes = [
   { path: 'demandes', component: ListDemandesComponent },
@@ -42,7 +43,8 @@ const appRoutesConseillers: Routes = [
     ConseillerComponent,
     ListDemandesComponent,
     ListComptesCourantsComponent,
-    ListComptesRemsComponent
+    ListComptesRemsComponent,
+    DemandesComponent,
   ],
   imports: [
     BrowserModule,

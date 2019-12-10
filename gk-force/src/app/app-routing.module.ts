@@ -10,6 +10,7 @@ import { ConseillerComponent } from './conseiller/conseiller.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AffecterConseillerComponent } from './admin/affecterConseiller/affecterConseiller.component';
+import { DemandesComponent } from './demandes/demandes.component';
 
 
 
@@ -21,9 +22,11 @@ const routes: Routes = [
   { path: 'admin/gererConseiller', component: GererConseillerComponent },
   { path: 'admin/affecterConseiller', component: AffecterConseillerComponent},
   { path: 'espace-client', component: EspaceClientComponent },
+  //{ path: 'compte-client/:id', component: CompteClientComponent },
   { path: 'compte-client', component: CompteClientComponent },
   { path: 'operation', component: OperationComponent },
   { path: 'conseiller', component: ConseillerComponent },
+  { path: 'demandes', component: DemandesComponent },
   { path: '', redirectTo: 'accueil', pathMatch: 'full'}
 
 ];

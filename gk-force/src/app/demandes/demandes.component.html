@@ -1,0 +1,19 @@
+<section>
+        <button routerLink="/espace-client"  class="btn btn-info">Retour</button>
+        <div class="container">
+        <h2>Demandes clients</h2>    
+        <form (ngSubmit)="onSubmit()" #demandeForm="ngForm">   
+            <div class="form-group">
+                <label for="typedemande">Type de demande</label>
+                <select name="typedemande" ngForm="typedemande" title="type de demande">
+                    <option value="O">Ouverture de compte</option>
+                    <option value="D">Demande de chéquier</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <input type="submit" name="submit" ngForm="submit" value="Valider"/>
+            </div>
+        </form>
+        </div>
+    </section>

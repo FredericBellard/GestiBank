@@ -1,5 +1,58 @@
-:host
+section
 {
     position: fixed;
-    top : 50px;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: grey;
 }
+
+form 
+{
+    border: 1px solid black;
+    color:white;
+    background-color: darkcyan;
+    text-align:center;
+    margin : 10px;
+    padding : 10px;
+}
+
+.form-group
+{
+  text-align : center;
+}
+
+label
+{
+    border: 1px solid aqua;
+    margin : 10px;
+    padding : 10px;
+    width : 200px;
+    text-align:center;
+}
+
+select
+{
+    border: 1px solid aqua;
+    margin : 10px;
+    padding : 10px;
+    width : 200px;
+    text-align:center;
+}
+
+input
+{
+    border: 1px solid aqua;
+    margin : 10px;
+    padding : 10px;
+    width : 200px;
+    text-align:center;
+}
+
+input[type=submit] 
+{
+    background-color: grey;
+    color: white;
+}
+

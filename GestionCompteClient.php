@@ -14,7 +14,7 @@
 	{   
 		global $conn;
 		$query = //"SELECT * FROM compte";
-		" select nom, prenom, num_rue, nom_rue, code_postal, ville, id_compte, rib, solde, type_compte from utilisateur inner join adresse on adresse.id_user=utilisateur.id_user inner join client on utilisateur.id_user=client.id_user inner join compte on client.id_client=compte.id_client ";
+		" select nom, prenom, num_rue, nom_rue, code_postal, ville, compte.id_compte, numero_compte, solde, type_compte, date_transaction, type_transaction, montant_transaction from utilisateur inner join adresse on adresse.id_user=utilisateur.id_user inner join client on utilisateur.id_user=client.id_user inner join compte on client.id_client=compte.id_client inner join transactions t on compte.id_compte=t.id_compte";
 		$response = array();
 		$result = mysqli_query($conn, $query);
 		
@@ -29,14 +29,16 @@
 		
 	}
 	
-	function getGestionCompteClient($id_client)
+	function getgestionCompteClientId($id_client)
 	{
 		global $conn;
 		$query = //"SELECT * FROM compte";
-		$query = " select nom, prenom, num_rue, nom_rue, code_postal, ville, id_compte, rib, solde, type_compte from utilisateur inner join adresse on adresse.id_user=utilisateur.id_user inner join client on utilisateur.id_user=client.id_user inner join compte on client.id_client=compte.id_client ";
+		$query = " select nom, prenom, num_rue, nom_rue, code_postal, ville, id_compte, numero_compte, solde, type_compte from utilisateur inner join adresse on adresse.id_user=utilisateur.id_user inner join client on utilisateur.id_user=client.id_user inner join compte on client.id_client=compte.id_client ";
+console.log("gg");
 		if($id_client != 0)
 		{
 			$query .= " WHERE client.id_client=".$id_client." LIMIT 1";
+			console.log("oo" + $id_client );
 		}
 		$response = array();
 		$result = mysqli_query($conn, $query);
@@ -44,6 +46,7 @@
 		{
 			$response[] = $row;
 		}
+		console.log($row);
 		header('Content-Type: application/json');
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
@@ -57,7 +60,7 @@
 			if(!empty($_GET["id_client"]))
 			{
 				$id_client=intval($_GET["id_client"]);
-				getGestionCompteClient($id_client);
+				getgestionCompteClientId($id_client);
 			}
 			else
 			{

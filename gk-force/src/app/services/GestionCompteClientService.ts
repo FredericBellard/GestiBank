@@ -6,7 +6,7 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class GestionCompteClientService
 {
-    private apiUrl='http://localhost/GestionCompteClient?client.id_client=1';
+    private apiUrl='http://localhost/GestionCompteClient';
 
     constructor(private http: HttpClient){}
 
@@ -14,5 +14,12 @@ export class GestionCompteClientService
     {
         return this.http.get<GestionCompteClient[]>(this.apiUrl);
     }
+
+    findCompteClientById(id):Observable<GestionCompteClient[]>
+    {
+         return this.http.get<GestionCompteClient[]>("http://localhost/GestionCompteClient/client.id_client="+id);
+        
+    }
+
 
 }
