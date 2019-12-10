@@ -22,16 +22,20 @@
             </thead>
             <tbody>
                 <tr *ngFor="let r of comptesRems">
-                    <td>{{r.id_compte}}</td>
+                    <td>{{r.numero_compte}}</td>
                     <td>{{r.nom}}</td>
                     <td>{{r.prenom}}</td>
                     <td>{{r.date_creation}}</td>
-                    <td>{{r.taux_interet}}</td>
+                    <td>{{r.taux_interet}}%</td>
                     <td *ngIf="r.facilite_caisse==0">Non</td>
                     <td *ngIf="r.facilite_caisse==1">Oui</td>                       
                     <td>{{r.montant_debit}}</td>                                                
-                    <td>{{r.solde}}</td>                        
-                    <button type="button" class="btn btn-primary">Ouvrir</button>
+                    <td *ngIf="r.solde > 0" style="background-color:#80FF33;">{{r.solde}} €</td>
+                    <td *ngIf="r.solde <=0" style="background-color: #FF5B33;">{{r.solde}} €</td>
+                    <td></td>
+                    <a class="btn btn-primary">Détails</a>
+                    <td></td>                        
+                    <a [routerLink] = "['/details-client-rem',r.id_compte_rem]" class="btn btn-primary">Fiche Client</a>
                 </tr>
             </tbody>
         </table>

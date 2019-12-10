@@ -11,7 +11,7 @@
 	
 	function getComptesCourants(){	
     	global $conn;
-		$query = "SELECT id_compte, nom, prenom, date_creation, solde 
+		$query = "SELECT id_compte, numero_compte, nom, prenom, date_creation, solde 
 		FROM compte ct 
 		INNER JOIN client c ON ct.id_client=c.id_client
 		INNER JOIN utilisateur u ON c.id_user=u.id_user 
@@ -28,41 +28,6 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 
-	// Orchestration des différentes fonctions
-	switch($request_method)
-	{
-		case 'GET':
-			// Récupérer les comptes courants
-			if(!empty($_GET["id_compte"]))
-			{
-				$id_compte=intval($_GET["id_compte"]);
-				getCompteCourant($id_compte);
-			}
-			else
-			{
-				getComptesCourants();
-			}
-			break;
-		default:
-			// Invalid Request Method
-			header("HTTP/1.0 405 Method Not Allowed");
-			break;
-			
-		case 'POST':
-			// Ajouter un compte-courant
-			addCompteCourant();
-			break;
-			
-		case 'PUT':
-			// Modifier un compte courant
-			$id_compte = intval($_GET["id_compte"]);
-			updateCompteCourant($id_compte);
-			break;
-			
-		case 'DELETE':
-			// Supprimer un compte courant
-			$id_compte = intval($_GET["id_compte"]);
-			deleteCompteCourant($id_compte);
-			break;
-	}
+	getComptesCourants();
+
 ?>

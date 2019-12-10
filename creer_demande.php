@@ -17,8 +17,10 @@
 		
 		$date_demande = $data->date_demande;
         $type_demande = $data->type_demande;
-        $type_compte = $data->type_compte;
-                
+		$type_compte = $data->type_compte;
+		$type_document = $data->type_document;
+		$contenu_document = $data->contenu_document;
+		
         $query="SELECT max(id_client) AS id_client FROM client";
             $result = (mysqli_query($conn, $query));
             while($row = mysqli_fetch_array($result)){
@@ -31,7 +33,10 @@
             $query="INSERT INTO compte (numero_compte,date_creation,solde,type_compte,id_client) VALUES(NULL, NULL,NULL, '".$type_compte."', '".$id_client."')";	
 			if(mysqli_query($conn, $query))
 			{
-				$response=array
+				$query="INSERT INTO document (type_document,contenu_document,id_client) VALUES('".$type_document."','".$contenu_document."','".$id_client."')";	
+				if(mysqli_query($conn, $query))
+				{
+					$response=array
                     (
                     'status' => 1,
                     'status_message' =>'Votre demande a bien été prise en compte.'
@@ -46,18 +51,28 @@
 				    );
 				    echo $query;
 				}
-        }
-        else
-		{
-		    $response=array
-		    (
-		    'status' => 0,
-		    'status_message' =>'ERREUR!.'. mysqli_error($conn)
-		    );
-		    echo $query;
+        	}
+        	else
+			{
+		    	$response=array
+		    	(
+		    	'status' => 0,
+		    	'status_message' =>'ERREUR!.'. mysqli_error($conn)
+		    	);
+		    	echo $query;
+			}
 		}
-        
-            header('Content-Type: application/json');
+		else
+		{
+		   	$response=array
+		   	(
+		   	'status' => 0,
+		   	'status_message' =>'ERREUR!.'. mysqli_error($conn)
+		   	);
+		   	echo $query;
+		}
+		
+		header('Content-Type: application/json');
 		echo json_encode($response);
     }
     

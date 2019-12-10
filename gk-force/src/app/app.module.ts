@@ -20,10 +20,17 @@ import { ListComptesCourantsComponent } from './conseiller/list-comptes-courants
 import { ListComptesRemsComponent } from './conseiller/list-comptes-rems/list-comptes-rems.component';
 import { AffecterConseillerComponent } from './admin/affecterConseiller/affecterConseiller.component';
 import { CreerConseillerComponent } from  './admin/gererConseiller/creerConseiller/creerConseiller.component';
+import { DetailsClientComponent } from './conseiller/list-comptes-courants/details-client/details-client.component';
+import { DetailsClientRemComponent } from './conseiller/list-comptes-rems/details-client-rem/details-client-rem.component';
+import { DetailsDemandeComponent } from './conseiller/list-demandes/details-demande/details-demande.component';
+import { TraitementDemandesComptesComponent } from './conseiller/list-demandes/details-demande/traitement-demandes-comptes/traitement-demandes-comptes.component';
+import { DemandesComponent } from './demandes/demandes.component';
 
-
-
-
+//const appRoutesConseillers: Routes = [
+  //{ path: 'demandes', component: ListDemandesComponent },
+  //{ path: 'comptes-courants', component: ListComptesCourantsComponent },
+  //{ path: 'comptes-rems', component: ListComptesRemsComponent },
+//];
 
 @NgModule({
   declarations: [
@@ -43,15 +50,18 @@ import { CreerConseillerComponent } from  './admin/gererConseiller/creerConseill
     ListDemandesComponent,
     ListComptesCourantsComponent,
     ListComptesRemsComponent,
-  
-  
+    DetailsClientComponent,
+    DetailsClientRemComponent,
+    DetailsDemandeComponent,
+    TraitementDemandesComptesComponent,
+    DemandesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-  //  RouterModule.forRoot(appRoutesConseillers)
+    //RouterModule.forRoot(appRoutesConseillers)
   ],
 
   //declarations: [

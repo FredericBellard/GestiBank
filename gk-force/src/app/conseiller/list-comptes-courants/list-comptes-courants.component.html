@@ -19,12 +19,16 @@
             </thead>
             <tbody>
                 <tr *ngFor="let c of comptesCourants">
-                    <td>{{c.id_compte}}</td>
+                    <td>{{c.numero_compte}}</td>
                     <td>{{c.nom}}</td>
                     <td>{{c.prenom}}</td>
-                    <td>{{c.date_creation}}</td>                        
-                    <td>{{c.solde}}</td>                        
-                    <button type="button" class="btn btn-primary">Ouvrir</button>
+                    <td>{{c.date_creation}}</td>
+                    <td *ngIf="c.solde > 0" style="background-color:#80FF33;">{{c.solde}} €</td>
+                    <td *ngIf="c.solde <=0" style="background-color: #FF5B33;">{{c.solde}} €</td>
+                    <td></td>
+                    <a class="btn btn-primary">Détails</a>
+                    <td></td>
+                    <a [routerLink] = "['/details-client',c.id_compte]" class="btn btn-primary">Fiche Client</a>
                 </tr>
             </tbody>
         </table>

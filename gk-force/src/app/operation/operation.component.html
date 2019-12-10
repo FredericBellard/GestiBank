@@ -1,1 +1,38 @@
-<p>operation</p>
+<section>
+    <button routerLink="/espace-client"  class="btn btn-info">Retour</button>
+    <div class="container">
+    <h2>Opérations bancaires</h2>    
+    <form (ngSubmit)="onSubmit()" #transactionForm="ngForm">
+        <div class="form-group">
+            <label for="typecompte">Numéro de compte</label>
+            <select name="numcompte" ngForm="numcompte" title="numéro de compte">
+                <option value="T">ZZZ</option>
+            </select>
+         </div>        
+        <div class="form-group">
+            <label for="typecompte">Type de compte</label>
+            <select name="typecompte" ngForm="typecompte" title="type de compte">
+                <option value="C">Courant</option>
+                <option value="R">Rémunéré</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="typetransact">Type d'opération</label>
+            <select name="typetransact" ngForm="typetransact" value="type d'opération">
+                <option value="V">Virement</option>
+                <option value="R">Retrait</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="montanttransact" ngForm="montanttransact">Montant</label>
+            <input type="text" name="montanttransact">
+        </div>
+
+        <div class="form-group">
+            <input type="submit" name="submit" ngForm="submit" value="Valider"/>
+        </div>
+    </form>
+    </div>
+</section>

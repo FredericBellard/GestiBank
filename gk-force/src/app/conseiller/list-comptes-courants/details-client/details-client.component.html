@@ -1,0 +1,34 @@
+<h2>Fiche Client</h2>
+
+<section *ngFor="let dt of detailsClients">
+    <nav>
+        <ul>
+            <button><li routerLink="/comptes-courants" class="btn btn-primary">Retour</li></button>
+        </ul>
+    </nav>
+    <div>
+        <p>Numéro de Compte : {{dt.numero_compte}}</p>
+        <hr>
+        <p>Date de Création du Compte : {{dt.date_creation}}</p>
+        <hr>
+        <p>Nom : {{dt.nom}}</p>
+        <hr>
+        <p>Prénom : {{dt.prenom}}</p>
+        <hr>
+        <p>Adresse : {{dt.num_rue}}, {{dt.nom_rue}}</p>
+        <hr>
+        <p>Code Postal : {{dt.code_postal}}</p>
+        <hr>
+        <p>Ville : {{dt.ville}}</p>
+        <hr>
+        <p>Téléphone : {{dt.telephone}}</p>
+        <hr>
+        <p *ngIf="dt.statut=='d'">Situation Familiale : Divorcé(e)</p>
+        <p *ngIf="dt.statut=='m'">Situation Familiale : Marié(e)</p>
+        <p *ngIf="dt.statut=='c'">Situation Familiale : Célibataire</p>
+        <p *ngIf="dt.statut=='v'">Situation Familiale : Veuf/Veuve</p>
+        <hr>
+        <p>Nombre d'Enfants : {{dt.nb_enfants}}</p>
+        <hr>
+    </div>
+</section>
