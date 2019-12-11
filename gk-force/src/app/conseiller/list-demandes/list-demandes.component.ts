@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 import{Demande} from "../modeles_conseiller/demandes"
 import{DemandesService} from "../services_conseiller/DemandesService"
-import { ConseillerService } from 'src/app/services/ConseillerService';
-import { Conseiller } from 'src/app/modeles/Conseiller';
 
 @Component({
   selector: 'app-list-demandes',
@@ -11,7 +9,7 @@ import { Conseiller } from 'src/app/modeles/Conseiller';
   providers:[DemandesService]
 })
 export class ListDemandesComponent implements OnInit {
-  demandes:Demande[];
+  private demandes:Demande[];
   
   constructor(private serviceDemande:DemandesService) { }
 
@@ -21,7 +19,7 @@ export class ListDemandesComponent implements OnInit {
 
   getAllDemandes(){
     this.serviceDemande.findAll().subscribe(
-      demandes => {this.demandes = demandes; }
+      demande => {this.demandes = demande;}
     );
   }
 }

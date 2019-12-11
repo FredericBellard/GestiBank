@@ -6,10 +6,10 @@ export class Utilisateur
     email : string;
     pseudonyme : string;
     password : string;
-    type: number;
+    role : number;
 
     constructor(id_user : number, nom : string, prenom : string, 
-        email : string,pseudonyme : string, password : string , type : number)
+        email : string,pseudonyme : string, password : string , role : number)
     {
         this.id_user = id_user;
         this.nom=nom;
@@ -17,7 +17,6 @@ export class Utilisateur
         this.email=email;
         this.pseudonyme=pseudonyme;
         this.password=password;
-        this.type=type; 
-
+        this.role=role;    
     }
 }

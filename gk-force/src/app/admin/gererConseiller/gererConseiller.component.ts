@@ -14,6 +14,4 @@ pageTitle: string= 'Modifications';
   ngOnInit() {
   }
 
-  createConseiller(){}
-
 }

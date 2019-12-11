@@ -1,58 +1,13 @@
 <ol class="breadcrumb">
     <li><a href="accueil" title="Accueil">Accueil/ </a>
-        <a routerLink="/accueil"></a></li>
-    <li><a href="admin" title="Admin">Admin/ </a>
+        <a routerLink="/accueil" ></a></li>
+    <li><a href="admin" title="admin">Admin/ </a>
         <a routerLink="/admin"></a></li>
-    <li class="active">Afectation-des-Conseillers </li>
+    <li  class="active">Affectation-Conseillers
+    </li>
 </ol>
 
-
-<div class='card'>
-    <div class='card-body'>
-
-        <div class='table-responsive'>
-            <table class='table'>
-                <thead>
-                    <tr>
-                        <th>Nom </th>
-                        <th>Prenom</th>
-                        <th>Type_demande</th>
-                        <th>Date_demande</th>
-                        <th>Conseiller</th>
-                        <th></th>
-                    </tr>
-
-                    <tr *ngFor='let demande of demandes'>
-                        <td>{{demande.nom}}</td>
-                        <td>{{demande.prenom}}</td>
-                        <td>
-                            <div *ngIf="demande.type_demande == 1">Demande Chequier</div>
-                            <div *ngIf="demande.type_demande == 0">Ouverture du Compte</div>
-                        </td>
-                        <td>{{demande.date_demande}}</td>
-                        <td>
-                            <select [(ngModel)]="demande.selectedConseiller">
-                                <option *ngFor="let c of conseillers" [ngValue]="c">{{c.nom + " " + c.prenom}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <a class='btn btn-primary' (click)='affecterConseiller(demande)'
-                                routerLink="/admin/affecterConseiller">
-                                Affectation
-                            </a>
-                        </td>
-
-                        <div class='pull-right col-md-5'>
-
-                            <div class="container spacer">
-                                <router-outlet></router-outlet>
-                            </div>
-                        </div>
-                </thead>
-            </table>
-        </div>
+    <div class="container spacer">
+        <router-outlet></router-outlet>
     </div>
-</div>
-<div class="container spacer">
-    <router-outlet></router-outlet>
-</div>
+   

@@ -19,7 +19,6 @@ import { ListDemandesComponent } from './conseiller/list-demandes/list-demandes.
 import { ListComptesCourantsComponent } from './conseiller/list-comptes-courants/list-comptes-courants.component';
 import { ListComptesRemsComponent } from './conseiller/list-comptes-rems/list-comptes-rems.component';
 import { AffecterConseillerComponent } from './admin/affecterConseiller/affecterConseiller.component';
-import { CreerConseillerComponent } from  './admin/gererConseiller/creerConseiller/creerConseiller.component';
 import { DetailsClientComponent } from './conseiller/list-comptes-courants/details-client/details-client.component';
 import { DetailsClientRemComponent } from './conseiller/list-comptes-rems/details-client-rem/details-client-rem.component';
 import { DetailsDemandeComponent } from './conseiller/list-demandes/details-demande/details-demande.component';
@@ -41,7 +40,6 @@ import { DemandesComponent } from './demandes/demandes.component';
     ListConseillersComponent,
     AdminComponent,
     GererConseillerComponent,
-    CreerConseillerComponent,
     AffecterConseillerComponent,
     EspaceClientComponent,
     CompteClientComponent,

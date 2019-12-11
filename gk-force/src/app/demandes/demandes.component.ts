@@ -12,6 +12,4 @@ export class DemandesComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(){}
-
 }

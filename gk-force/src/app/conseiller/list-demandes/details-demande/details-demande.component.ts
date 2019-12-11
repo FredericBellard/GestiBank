@@ -10,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   providers:[DetailsDemandesService]
 })
 export class DetailsDemandeComponent implements OnInit {
-  detailsDemandes:DetailsDemande[];
-  ref_demande; 
+  private detailsDemandes:DetailsDemande[];
+  private ref_demande; 
 
   constructor(private serviceDetailsDemande:DetailsDemandesService, private route:ActivatedRoute) { }
 

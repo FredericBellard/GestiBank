@@ -8,7 +8,7 @@ import {Injectable} from "@angular/core";
 export class DemandesService
 {
     // Url qui nous permet de récupérer les services dans Postman : 
-    private apiUrl='http://localhost/gk-Force/conseiller_demandes.php';
+    private apiUrl='http://localhost/gkForce/conseiller_demandes.php';
 
     constructor(private http: HttpClient){}
 
@@ -16,8 +16,4 @@ export class DemandesService
     {
         return this.http.get<Demande[]>(this.apiUrl);
     }
-
-    update(d:Demande):Observable<Demande>{
-        return this.http.put<Demande>(this.apiUrl,d);
-    } 
 }

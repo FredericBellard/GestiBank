@@ -13,8 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CompteClientComponent implements OnInit {
 
-  gestionCompteClient : GestionCompteClient[];
-  gestionCompteClientDetail : GestionCompteClientDetail[];
+  private gestionCompteClient : GestionCompteClient[];
+  private gestionCompteClientDetail : GestionCompteClientDetail[];
   id;
  
   constructor(

@@ -9,7 +9,7 @@ import{CptesRemsService} from "../services_conseiller/CptesRemsService"
   providers:[CptesRemsService]
 })
 export class ListComptesRemsComponent implements OnInit {
-  comptesRems:CompteRem[];
+  private comptesRems:CompteRem[];
 
   constructor(private serviceCompteRem:CptesRemsService) { }
 

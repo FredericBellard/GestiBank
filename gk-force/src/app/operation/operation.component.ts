@@ -15,7 +15,7 @@ export class OperationComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit()
+  OnSubmit()
   {
     //this.
   }
