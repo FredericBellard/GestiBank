@@ -19,11 +19,13 @@ import { DetailsDemandeComponent } from './conseiller/list-demandes/details-dema
 import { TraitementDemandesComptesComponent } from './conseiller/list-demandes/details-demande/traitement-demandes-comptes/traitement-demandes-comptes.component';
 import { DemandesComponent } from './demandes/demandes.component';
 import { DetailTransactionsComponent } from './detail-transactions/detail-transactions.component';
+import { AssurerComponent } from'./accueil/assurer/assurer.component';
 
 
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
+  { path: 'assurer', component: AssurerComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'admin', component: AdminComponent },

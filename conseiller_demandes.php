@@ -7,16 +7,17 @@
 	
 	// Connect to database
 	include("db_connect.php");
-    $request_method = $_SERVER["REQUEST_METHOD"];
+	$request_method = $_SERVER["REQUEST_METHOD"];
+	//echo "Request Method".$request_method;
 	
 	function getDemandes(){	
     	global $conn;
 		$query = "SELECT *
-		FROM utilisateur u 
-		INNER JOIN client c ON u.id_user=c.id_user 
-		INNER JOIN demande_client ON c.id_client=demande_client.id_client 
-		INNER JOIN compte ON c.id_client=compte.id_client 
-		WHERE (type_user='0' AND type_demande='0' AND date_creation is NULL)";
+			FROM demande_client
+			INNER JOIN client ON client.id_client = demande_client.id_client
+			INNER JOIN utilisateur ON client.id_user = utilisateur.id_user
+			where client.id_conseiller=-1 or utilisateur.pseudo in('', null) 
+								or utilisateur.mot_de_passe in('', null) and type_demande=0";
 		$response = array();
 		$result = mysqli_query($conn, $query);
 		
@@ -33,10 +34,10 @@
 	function update(){
 		global $conn;
 		$data = json_decode(file_get_contents("php://input"),true);
-		$id_demande = $data["id_demande"];
+		$id_client = $data["id_client"];
 		$id_conseiller = $data["id_conseiller"];
 		
-		$query="UPDATE demande_client SET id_conseiller='".$id_conseiller."' WHERE id_demande=".$id_demande;
+		$query="UPDATE client SET id_conseiller=".$id_conseiller." WHERE id_client=".$id_client;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
@@ -57,24 +58,20 @@
 		// Orchestration des différentes fonctions
 		switch($request_method)
 		{
-			case 'GET':
+			case "GET":
 				// Récupérer les comptes rémunérés
 				if(!empty($_GET["id_demande"]))
 				{
-
+					getDemandes();
 				}
 				else
 				{
 					getDemandes();
 				}
 				break;
-			default:
-				// Invalid Request Method
-				header("HTTP/1.0 405 Method Not Allowed");
-				break;
-				
+	
 			case 'POST':
-				// Ajouter un compte rémunéré
+				getDemandes();
 				break;
 				
 			case 'PUT':
@@ -84,6 +81,10 @@
 				
 			case 'DELETE':
 				// Supprimer un compte rémunéré
+				break;
+			default:
+				// Invalid Request Method
+				header("HTTP/1.0 405 Method Not Allowed");
 				break;
 		}
 	

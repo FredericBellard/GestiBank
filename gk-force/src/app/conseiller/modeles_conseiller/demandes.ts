@@ -4,6 +4,8 @@ export class Demande{
     id_user : number;
     nom : string;
     prenom : string;
+    pseudo : string;
+    mot_de_passe: string;
     type_compte : number;
 	
     constructor(ref_demande : number, date_demande : string, id_user : number, nom : string, prenom : string, type_compte : number){

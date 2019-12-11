@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { AssurerComponent } from'./accueil/assurer/assurer.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { AdminComponent } from './admin/admin.component';
@@ -36,6 +37,7 @@ import { DetailTransactionsComponent } from './detail-transactions/detail-transa
   declarations: [
     AppComponent,
     AccueilComponent,
+    AssurerComponent,
     InscriptionComponent,
     ConnexionComponent,
     ListConseillersComponent,
