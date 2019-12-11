@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col">
+    
+    <section>
+        <button routerLink="/compte-clients" class="btn btn-info">Retour</button>
+        <p id="titre">DETAILS DU COMPTE DU CLIENT</p>
+     <br/>
+    </section>
+        <section class="main">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date de la transaction</th>
+                        <th>Type de la transaction</th>
+                        <th>Montant de la transaction</th>
+                    </tr>                   
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let gc of gestionCompteClientDetail">
+                            <td>{{gc.date_transaction}}</td>
+                            <td>{{gc.type_transaction}}</td>
+                            <td>{{gc.montant_transaction}}</td>
+                        </tr>  
+                    </tbody>                  
+            </table>          
+        </section>  
+        </div>
+    </div>

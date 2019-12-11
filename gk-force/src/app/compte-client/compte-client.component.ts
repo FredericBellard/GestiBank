@@ -23,14 +23,23 @@ export class CompteClientComponent implements OnInit {
     private route :ActivatedRoute,
     private router:Router
 
-    ) { }
+    ) { 
+      
+       this.route.queryParams.subscribe(params => {this.id = params['id'];});
+
+    }
 
   ngOnInit() 
   {
-    this.id = this.route.params.subscribe(params => { this.id = +params['id'];});
-    this.getgestionCompteClient();
-    this.getgestionCompteClientId(this.id);
-    //this.getgestionCompteClientDetail(this.id);
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id){
+      this.getgestionCompteClientId(this.id);
+    }
+    else
+    {
+      this.getgestionCompteClient();
+    }
+    
   }
 
   getAdresseEntete()
@@ -76,12 +85,13 @@ export class CompteClientComponent implements OnInit {
 
   getgestionCompteClientId(id:number)
   {
-     // this.router.navigate(["/GestionCompteClient",id]);
-   this.id=+this.route.snapshot.params['id'];
-
+    
    this.serviceGestionCompteClient.findCompteClientById(this.id)
-    .subscribe(data=>this.gestionCompteClient=data);
-   
+    .subscribe(data=>
+      {this.gestionCompteClient=data; 
+        console.log(this.gestionCompteClient);
+      });
+       
   }
 
   
@@ -121,8 +131,8 @@ export class CompteClientComponent implements OnInit {
   {
     let total = 0;
     for (var i = 0; i < this.gestionCompteClient.length; i++) {
-        if (this.gestionCompteClient[i].montant_transaction) {
-           total = Number.parseFloat(total.toString()) + Number.parseFloat(this.gestionCompteClient[i].montant_transaction.toString());
+        if (this.gestionCompteClient[i].solde) {
+           total = Number.parseFloat(total.toString()) + Number.parseFloat(this.gestionCompteClient[i].solde.toString());
         }
     }
     return total;

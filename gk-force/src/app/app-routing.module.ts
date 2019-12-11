@@ -18,6 +18,7 @@ import { DetailsClientRemComponent } from './conseiller/list-comptes-rems/detail
 import { DetailsDemandeComponent } from './conseiller/list-demandes/details-demande/details-demande.component';
 import { TraitementDemandesComptesComponent } from './conseiller/list-demandes/details-demande/traitement-demandes-comptes/traitement-demandes-comptes.component';
 import { DemandesComponent } from './demandes/demandes.component';
+import { DetailTransactionsComponent } from './detail-transactions/detail-transactions.component';
 
 
 
@@ -29,8 +30,8 @@ const routes: Routes = [
   { path: 'admin/gererConseiller', component: GererConseillerComponent },
   { path: 'admin/affecterConseiller', component: AffecterConseillerComponent},
   { path: 'espace-client', component: EspaceClientComponent },
-  //{ path: 'compte-client/:id', component: CompteClientComponent },
-  { path: 'compte-client', component: CompteClientComponent },
+  { path: 'compte-client/:id', component: CompteClientComponent },
+  { path: 'compte-clients', component: CompteClientComponent },
   { path: 'operation', component: OperationComponent },
   { path: 'conseiller', component: ConseillerComponent },
   { path: 'demandes', component: ListDemandesComponent },
@@ -42,6 +43,8 @@ const routes: Routes = [
   { path: 'traitement-demandes-comptes/:ref', component: TraitementDemandesComptesComponent}, 
   //{ path: 'details-demande/:ref/validation', component: TraitementDemandesComptesComponent}, 
   { path: 'demandes-client', component: DemandesComponent },
+  { path: 'detail-transaction/:id', component: DetailTransactionsComponent },
+  { path: 'detail-transactions', component: DetailTransactionsComponent },
   { path: '', redirectTo: 'accueil', pathMatch: 'full'}
 
 ];

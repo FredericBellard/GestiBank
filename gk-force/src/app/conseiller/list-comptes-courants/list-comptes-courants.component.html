@@ -26,7 +26,7 @@
                     <td *ngIf="c.solde > 0" style="background-color:#80FF33;">{{c.solde}} €</td>
                     <td *ngIf="c.solde <=0" style="background-color: #FF5B33;">{{c.solde}} €</td>
                     <td></td>
-                    <a class="btn btn-primary">Détails</a>
+                    <a routerLink="/detail-transactions" class="btn btn-primary">Détails</a>
                     <td></td>
                     <a [routerLink] = "['/details-client',c.id_compte]" class="btn btn-primary">Fiche Client</a>
                 </tr>

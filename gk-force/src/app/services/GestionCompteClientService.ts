@@ -1,4 +1,4 @@
-import {HttpClient}  from "@angular/common/http";
+import {HttpClient, HttpParams}  from "@angular/common/http";
 import {GestionCompteClient} from "../modeles/GestionCompteClient";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
@@ -7,6 +7,8 @@ import {Injectable} from "@angular/core";
 export class GestionCompteClientService
 {
     private apiUrl='http://localhost/GestionCompteClient';
+    params=new HttpParams();
+    
 
     constructor(private http: HttpClient){}
 
@@ -16,9 +18,8 @@ export class GestionCompteClientService
     }
 
     findCompteClientById(id):Observable<GestionCompteClient[]>
-    {
-         return this.http.get<GestionCompteClient[]>("http://localhost/GestionCompteClient/id_client="+id);
-        
+    {  
+        return this.http.get<GestionCompteClient[]>(this.apiUrl,{params:{id_client:id}});       
     }
 
 
