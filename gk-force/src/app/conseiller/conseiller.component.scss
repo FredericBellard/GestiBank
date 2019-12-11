@@ -12,6 +12,12 @@ h1{
 	margin-top: 5px;
 }
 
+nav{
+    display:flex;
+    flex:row;
+    float:left;
+}
+
 #myTab{
 	background-color: white;
 }
