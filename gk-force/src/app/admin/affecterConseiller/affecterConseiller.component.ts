@@ -13,8 +13,8 @@ import { ConseillerService } from 'src/app/services/ConseillerService';
 
 export class AffecterConseillerComponent implements OnInit {
 pageTitle: string= 'Affectation';
-private demandes:Demande[];
-private conseillers:Conseiller[];
+demandes:Demande[];
+conseillers:Conseiller[];
 
   constructor(private serviceDemande:DemandesService, private conseillerService:ConseillerService) { }
   

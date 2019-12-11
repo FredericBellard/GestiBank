@@ -11,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
   providers:[DetailsClientService]
 })
 export class DetailsClientComponent implements OnInit {
-  private detailsClients:DetailsClient[];
-  private id_compte; 
+  detailsClients:DetailsClient[];
+  id_compte; 
 
 
   constructor(private serviceDetailsClient:DetailsClientService, private route:ActivatedRoute) { }

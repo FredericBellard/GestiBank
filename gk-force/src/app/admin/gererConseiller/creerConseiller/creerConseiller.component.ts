@@ -10,7 +10,7 @@ import { Conseiller } from 'src/app/modeles/Conseiller';
 })
 
 export class CreerConseillerComponent implements OnInit {
-  private conseiller: Conseiller;
+  conseiller: Conseiller;
   pageTitle: string = 'Creation Conseiller';
 
 

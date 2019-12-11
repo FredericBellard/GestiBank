@@ -11,7 +11,7 @@ import { Conseiller } from 'src/app/modeles/Conseiller';
   providers:[DemandesService]
 })
 export class ListDemandesComponent implements OnInit {
-  private demandes:Demande[];
+  demandes:Demande[];
   
   constructor(private serviceDemande:DemandesService) { }
 

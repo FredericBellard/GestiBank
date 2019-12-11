@@ -9,7 +9,7 @@ import{CompteCourantService} from "../services_conseiller/CptesCourantsService"
   providers:[CompteCourantService]
 })
 export class ListComptesCourantsComponent implements OnInit {
-  private comptesCourants:CompteCourant[];
+  comptesCourants:CompteCourant[];
 
   constructor(private serviceCompteCourant:CompteCourantService) { }
 
