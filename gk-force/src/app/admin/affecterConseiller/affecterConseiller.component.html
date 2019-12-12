@@ -1,10 +1,9 @@
 <ol class="breadcrumb">
     <li><a href="accueil" title="Accueil">Accueil/ </a>
-        <a routerLink="/accueil" ></a></li>
-    <li><a href="admin" title="admin">Admin/ </a>
+        <a routerLink="/accueil"></a></li>
+    <li><a href="admin" title="Admin">Admin/ </a>
         <a routerLink="/admin"></a></li>
-    <li  class="active">Affectation-Conseillers
-    </li>
+    <li class="active">Afectation-des-Conseillers </li>
 </ol>
 
 
@@ -20,8 +19,6 @@
                         <th>Type_demande</th>
                         <th>Date_demande</th>
                         <th>Conseiller</th>
-                        <th>Pseudonyme</th>
-                        <th>Mot de passe</th>
                         <th></th>
                     </tr>
 
@@ -34,20 +31,14 @@
                         </td>
                         <td>{{demande.date_demande}}</td>
                         <td>
-                            <select class="form-control" [(ngModel)]="demande.selectedConseiller">
+                            <select [(ngModel)]="demande.selectedConseiller">
                                 <option *ngFor="let c of conseillers" [ngValue]="c">{{c.nom + " " + c.prenom}}</option>
                             </select>
                         </td>
                         <td>
-                            <input type="text" class="form-control" [(ngModel)]='demande.pseudo' />
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" [(ngModel)]='demande.mot_de_passe' />
-                        </td>
-                        <td>
-                            <a class='btn btn-primary' (click)='affecterConseiller(demande)'>
-                                <!-- routerLink="/admin/affecterConseiller"> -->
-                                Save
+                            <a class='btn btn-primary' (click)='affecterConseiller(demande)'
+                                routerLink="/admin/affecterConseiller">
+                                Affectation
                             </a>
                         </td>
 
@@ -60,5 +51,8 @@
                 </thead>
             </table>
         </div>
-S    </div>
-   
+    </div>
+</div>
+<div class="container spacer">
+    <router-outlet></router-outlet>
+</div>
