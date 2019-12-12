@@ -6,7 +6,7 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class GestionCompteClientDetailService
 {
-    private apiUrl='http://localhost/GestionCompteClientDetail';
+    private apiUrl='http://localhost/GestionCompteClientDetail.php';
     params=new HttpParams();
     
 

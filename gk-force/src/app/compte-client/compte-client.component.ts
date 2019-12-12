@@ -85,7 +85,6 @@ export class CompteClientComponent implements OnInit {
 
   getgestionCompteClientId(id:number)
   {
-    
    this.serviceGestionCompteClient.findCompteClientById(this.id)
     .subscribe(data=>
       {this.gestionCompteClient=data; 
