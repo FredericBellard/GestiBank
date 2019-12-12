@@ -1,0 +1,61 @@
+
+    <ol class="breadcrumb">
+        <li><a href="accueil" title="Accueil">Accueil/ </a>
+            <a routerLink="/accueil"></a></li>
+        <li><a href="admin" title="Admin">Admin/ </a>
+            <a routerLink="/admin"></a></li>
+        <li><a href="admin/gererConseiller" title="gererConseiller">Gestion_des_conseillers/ </a>
+            <a routerLink="/admin/gererConseiller"></a></li>
+        <li class="active">Creation_des_conseillers</li>
+    </ol>
+    
+    
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-9 register-right">
+                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                    
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Creer un Conseiller</h3>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nom *" [(ngModel)]='conseiller.nom' />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Prenom*" [(ngModel)]='conseiller.prenom' />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Matricule*"  [(ngModel)]='conseiller.mle_conseiller' />
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" placeholder="Date Debut Contrat*"  [(ngModel)]='conseiller.date_deb_contrat'/> 
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email*" [(ngModel)]='conseiller.email' />
+                                </div>
+                                <div class="form-group">
+                                        <input type="username" class="form-control" placeholder="Pseudonyme*" [(ngModel)]='conseiller.pseudo' /> 
+                                    </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Mot_de_passe*"[(ngModel)]='conseiller.mot_de_passe' /> 
+                                </div>
+                                <div class="form-group">
+                                        <input type="submit" class="btn btn-primary" value="Enregistrer" (click)='creerConseiller()'/>
+                                 </div>
+                         </div>
+                             
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container spacer">
+        <router-outlet></router-outlet>
+    </div>

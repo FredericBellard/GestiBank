@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-demandes',
   templateUrl: './demandes.component.html',
@@ -11,5 +12,7 @@ export class DemandesComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  onSubmit(){}
 
 }

@@ -1,23 +1,22 @@
 <section>
-        <nav>
-          <ul>
-            <button><li routerLink="/admin/gererConseiller" class="btn btn-primary">Gerer les Conseillers</li></button>
-            <button><li routerLink="/admin/affecterConseiller" class="btn btn-primary">Affecter les utilisateurs aux Conseillers</li></button>
-          </ul>
-        </nav>
-   
-<ol class="breadcrumb">
-  <li><a href="accueil" title="Accueil">Accueil/</a>
-      <a routerLink="/accueil" ></a></li>
-  <li class="active">Admin</li>
-</ol>  
-        <div class="container spacer">
-          <router-outlet></router-outlet>
-        </div>
- </section>   
-   
+  <nav>
+    <ul>
+      <button>
+        <li routerLink="/admin/gererConseiller" class="btn btn-primary">Gerer les Conseillers</li>
+      </button>
+      <button>
+        <li routerLink="/admin/affecterConseiller" class="btn btn-primary">Affecter les utilisateurs aux Conseillers
+        </li>
+      </button>
+    </ul>
+  </nav>
 
-
-
-
-
+  <ol class="breadcrumb">
+    <li><a href="accueil" title="Accueil">Accueil/</a>
+      <a routerLink="/accueil"></a></li>
+    <li class="active">Admin</li>
+  </ol>
+  <div class="container spacer">
+    <router-outlet></router-outlet>
+  </div>
+</section>
