@@ -9,7 +9,7 @@ export class DetailsDemandesService
 {
     // Url qui nous permet de récupérer les services dans Postman : 
     private apiUrl='http://localhost/gkForce/details_demandes_ouverture.php';
-    private getapiUrl='http://localhost/gkForce/details_demandes_ouverture.php';
+    private getapiUrl='http://localhost/gkForce/details_demandes_ouverture/php';
 
     constructor(private http: HttpClient){}
 

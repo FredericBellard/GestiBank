@@ -18,6 +18,8 @@
                         <th>Prenom</th>
                         <th>Type_demande</th>
                         <th>Date_demande</th>
+                        <th>Pseudonyme</th>
+                        <th>Mot de passe</th>
                         <th>Conseiller</th>
                         <th></th>
                     </tr>
@@ -31,14 +33,20 @@
                         </td>
                         <td>{{demande.date_demande}}</td>
                         <td>
-                            <select [(ngModel)]="demande.selectedConseiller">
+                            <input type="text" class="form-control" [(ngModel)]='demande.pseudo' />
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" [(ngModel)]='demande.mot_de_passe' />
+                        </td>
+                        <td>
+                            <select class="form-control" [(ngModel)]="demande.selectedConseiller">
                                 <option *ngFor="let c of conseillers" [ngValue]="c">{{c.nom + " " + c.prenom}}</option>
                             </select>
                         </td>
                         <td>
-                            <a class='btn btn-primary' (click)='affecterConseiller(demande)'
-                                routerLink="/admin/affecterConseiller">
-                                Affectation
+                            <a class='btn btn-primary' (click)='affecterConseiller(demande)'>
+                                <!-- routerLink="/admin/affecterConseiller"> -->
+                                Save
                             </a>
                         </td>
 
