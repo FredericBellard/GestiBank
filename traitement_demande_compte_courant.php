@@ -31,7 +31,7 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 
-	function refuseDemande($ref_demande){
+	function refusDemande($ref_demande){
         global $conn;
         $data = json_decode(file_get_contents("php://input"),true);
 		$query = "DELETE FROM demande_client WHERE ref_demande='".$ref_demande."'";
@@ -57,7 +57,7 @@
 
 		case 'DELETE':
 			$ref_demande = intval($_GET["ref_demande"]);
-			refuseDemande($ref_demande);
+			refusDemande($ref_demande);
 			break;
 	}
 ?>

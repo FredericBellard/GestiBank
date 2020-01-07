@@ -8,9 +8,9 @@
     </nav>
     <div>
         <p>Numéro de Demande : {{dd.ref_demande}}
-            <button id="refuse" class="btn btn-danger">Refuser</button>
-            <a id="accept" [routerLink] = "['/traitement-demandes-comptes',dd.ref_demande]" class="btn btn-success">Valider</a>
-            <!--<a id="accept" [routerLink] = "['validation' ]" routerLinkActive="active" class="btn btn-success">Accepter</a>-->
+           <a id="refuse" [routerLink] = "['/refus-demande',dd.ref_demande]" class="btn btn-danger">Refuser</a>
+           <a id="accept" [routerLink] = "['/traitement-demandes-comptes',dd.ref_demande]" class="btn btn-success">Valider</a>
+           <!--<a id="accept" [routerLink] = "['validation' ]" routerLinkActive="active" class="btn btn-success">Accepter</a>-->
         </p>
         <hr>
         <p>Date de la Demande : {{dd.date_demande}}</p>

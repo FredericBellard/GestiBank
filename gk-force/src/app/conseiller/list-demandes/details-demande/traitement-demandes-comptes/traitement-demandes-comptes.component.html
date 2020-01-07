@@ -1,7 +1,5 @@
 <h2>Validation de la Demande</h2>
 
-<!---->
-
 <section>
     <nav>
         <ul id="chemin">
@@ -9,23 +7,20 @@
         </ul>
     </nav>
     <div>
-    <!--<div *ngFor="let vd of validationDemande">
+    <div *ngFor="let vd of validationDemande">
         <p>Numéro de Demande : {{vd.ref_demande}} </p>
         <hr>
         <p>Date de la Demande : {{vd.date_demande}}</p>
         <hr>
-    </div>-->
+    </div>
         <form>
             Numéro de Compte : <input type="number" name="number" />
             Date de Création :<input type="date" name="date" />
             Premier Dépôt :<input type="number" name="solde" />
             <div>
-                <input type="checkbox" id="courant" name="courant">
-                <label for="courant">Compte Courant</label>
-            </div>
-            <div>
-                <input type="checkbox" id="rem" name="rem">
-                <label for="rem">Compte Rémunéré</label>
+                <input type="radio" name="choix" value="courant"/><strong> Compte Courant</strong><br />
+                <p></p>
+                <input type="radio" name="choix" value="remunere"/><strong> Compte Rémunéré</strong><br />
             </div>
             Taux d'Intérêt : <input type="number" name="taux" />
             Facilité de Caisse : <input type="texte" name="facilite" />

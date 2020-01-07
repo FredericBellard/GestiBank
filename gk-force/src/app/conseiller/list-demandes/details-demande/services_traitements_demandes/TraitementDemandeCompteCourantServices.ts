@@ -22,5 +22,5 @@ export class TraitementDemandeCompteCourantService
     {
         return this.http.get<ValidationCompteCourant[]>(this.getapiUrl+"/?ref_demande="+refDemande);
     }
-
+    
 }

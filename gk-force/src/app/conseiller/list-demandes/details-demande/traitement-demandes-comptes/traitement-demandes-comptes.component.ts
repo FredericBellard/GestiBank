@@ -16,11 +16,13 @@ export class TraitementDemandesComptesComponent implements OnInit {
   constructor(private serviceValidation : TraitementDemandeCompteCourantService, private route:ActivatedRoute) { }
 
   ngOnInit() {
-    //lecture apartir de l'url 
+    //lecture à partir de l'url 
     this.ref_demande=this.route.snapshot.params['ref'];
     //call de la fonction de recherche 
     this.getValidation(this.ref_demande);
+    
   }
+
   getValidation(ref_demande){
     this.serviceValidation.findValidation(ref_demande).subscribe(
       validationsDemande => {this.validationDemande = validationsDemande;}

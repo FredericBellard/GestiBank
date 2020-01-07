@@ -19,8 +19,8 @@ import { DetailsDemandeComponent } from './conseiller/list-demandes/details-dema
 import { TraitementDemandesComptesComponent } from './conseiller/list-demandes/details-demande/traitement-demandes-comptes/traitement-demandes-comptes.component';
 import { DemandesComponent } from './demandes/demandes.component';
 import { DetailTransactionsComponent } from './detail-transactions/detail-transactions.component';
-
-
+import { DetailsTransactionsComponent } from './conseiller/list-comptes-courants/details-transactions/details-transactions.component';
+import { RefusDemandeComponent } from './conseiller/list-demandes/details-demande/refus-demande/refus-demande.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -45,6 +45,8 @@ const routes: Routes = [
   { path: 'demandes-client', component: DemandesComponent },
   { path: 'detail-transaction/:id', component: DetailTransactionsComponent },
   { path: 'detail-transactions', component: DetailTransactionsComponent },
+  { path: 'details-transactions/:id', component: DetailsTransactionsComponent },
+  { path: 'refus-demande/:ref', component: RefusDemandeComponent}, 
   { path: '', redirectTo: 'accueil', pathMatch: 'full'}
 
 ];

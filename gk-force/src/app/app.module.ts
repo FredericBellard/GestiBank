@@ -25,6 +25,8 @@ import { DetailsDemandeComponent } from './conseiller/list-demandes/details-dema
 import { TraitementDemandesComptesComponent } from './conseiller/list-demandes/details-demande/traitement-demandes-comptes/traitement-demandes-comptes.component';
 import { DemandesComponent } from './demandes/demandes.component';
 import { DetailTransactionsComponent } from './detail-transactions/detail-transactions.component';
+import { DetailsTransactionsComponent } from './conseiller/list-comptes-courants/details-transactions/details-transactions.component';
+import { RefusDemandeComponent } from './conseiller/list-demandes/details-demande/refus-demande/refus-demande.component';
 
 //const appRoutesConseillers: Routes = [
   //{ path: 'demandes', component: ListDemandesComponent },
@@ -54,7 +56,9 @@ import { DetailTransactionsComponent } from './detail-transactions/detail-transa
     DetailsDemandeComponent,
     TraitementDemandesComptesComponent,
     DemandesComponent,
-    DetailTransactionsComponent
+    DetailTransactionsComponent,
+    DetailsTransactionsComponent,
+    RefusDemandeComponent
   ],
   imports: [
     BrowserModule,

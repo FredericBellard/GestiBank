@@ -94,7 +94,7 @@
 		$telephone = $data["telephone"];
 		$num_enfants = $data["num_enfants"];
 		$sit_matrimon = $data["sit_matrimon"];
-		$query="UPDATE client SET id_user ='".$id_user."',adresse='".$adresse."', id_document='".id_document."', telephone ='".$telephone."', num_enfants='".$num_enfants."', sit_matrimon='".$sit_matrimon."' WHERE id_client=".$id_client;
+		$query="UPDATE client SET id_user ='".$id_user."',adresse='".$adresse."', id_document='".$id_document."', telephone ='".$telephone."', num_enfants='".$num_enfants."', sit_matrimon='".$sit_matrimon."' WHERE id_client=".$id_client;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(

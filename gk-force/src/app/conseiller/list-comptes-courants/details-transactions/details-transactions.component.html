@@ -1,0 +1,31 @@
+<h2>Compte de Dépôt </h2>
+<div *ngFor="let de of DetailsTransactions">
+    <p>{{de.numero_compte}} - {{de.nom}} {{de.prenom}}</p>
+</div>
+
+<section>
+        <nav>
+            <ul>
+                <button><li routerLink="/comptes-courants" class="btn btn-primary">Retour</li></button>
+            </ul>
+        </nav>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date de la Transaction</th>
+                    <th>Nature de l'Opération</th>
+                    <th>Montant de l'Opération</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let de of DetailsTransactions">
+                    <td>{{de.date_transaction}}</td>
+                    <td>{{de.type_transaction}}</td>
+                    <td *ngIf="de.montant_transaction > 0" style="background-color:#80FF33;">{{de.montant_transaction}}</td>
+                    <td *ngIf="de.montant_transaction < 0" style="background-color:#FF5B33;">{{de.montant_transaction}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+</section>

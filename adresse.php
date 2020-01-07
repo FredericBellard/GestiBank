@@ -9,7 +9,7 @@
 	include("db_connect.php");
 	$request_method = $_SERVER["REQUEST_METHOD"];
 
-	function getAdresses()
+	function getAdresse()
 	{
 		global $conn;
 		$query = "SELECT * FROM adresse";
@@ -44,27 +44,21 @@
 	function AddAdresse()
 	{
 		global $conn;
-		/*$name = $_POST["name"];
-		$description = $_POST["description"];
-		$price = $_POST["price"];
-		$category = $_POST["category"];
-		$created = date('Y-m-d H:i:s');
-		$modified = date('Y-m-d H:i:s');*/
 
 		// GET DATA FORM REQUEST
 		$data = json_decode(file_get_contents("php://input"));
+		$num_adresse = $data->num_adresse;
 		$num_rue = $data->num_rue;
-		$nom_rue = $data->nom_rue;
-		$code_postal = $data->code_postal;
+		$code_postale = $data->code_postale;
 		$ville = $data->ville;
 		$id_user = $data->id_user;
 		
-		echo $query="INSERT INTO adresse (num_rue,nom_rue ,code_postal , ville, id_user) VALUES('".$num_rue."', '".$nom_rue."', '".$code_postal."', '".$ville."','".$id_user."')";
+		echo $query="INSERT INTO adresse (num_adresse,num_rue ,code_postale , ville, id_user) VALUES('".$num_adresse."', '".$num_rue."', '".$code_postale."', '".$ville."','".$id_user."')";
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Adresse ajouté avec succès.'
+				'status_message' =>'Utilisateur ajouté avec succès.'
 			);
 		}
 		else
@@ -82,17 +76,17 @@
 	{
 		global $conn;
 		$data = json_decode(file_get_contents("php://input"),true);
-		$num_rue = $data["num_adresse"];
-		$nom_rue = $data["num_rue"];
-		$code_postal  = $data["code_postal "];
+		$num_adresse = $data["num_adresse"];
+		$num_rue = $data["num_rue"];
+		$code_postale  = $data["code_postale "];
 		$ville = $data["ville"];
 		$id_user = $data["id_user"];
-		$query="UPDATE adresse SET num_rue ='".$num_rue."', nom_rue='".$nom_rue."', code_postal ='".$code_postal ."', ville='".$ville."', id_user='".$id_user."' WHERE id_adresse =".$id_adresse;
+		$query="UPDATE adresse SET num_adresse ='".$num_adresse."', num_rue='".$num_rue."', code_postale ='".$code_postale ."', ville='".$ville."', id_user='".$id_user."' WHERE id=".$id;
 		if(mysqli_query($conn, $query))
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Adresse mis à jour avec succès.'
+				'status_message' =>'Utilisateur mis à jour avec succès.'
 			);
 		}
 		else
@@ -114,14 +108,14 @@
 		{
 			$response=array(
 				'status' => 1,
-				'status_message' =>'Adresse supprimé avec succès.'
+				'status_message' =>'Utilisateur supprimé avec succès.'
 			);
 		}
 		else
 		{
 			$response=array(
 				'status' => 0,
-				'status_message' =>'La suppression de l_Adresse a échoué. '. mysqli_error($conn)
+				'status_message' =>'La suppression de l_utilisateur a échoué. '. mysqli_error($conn)
 			);
 		}
 		header('Content-Type: application/json');
@@ -141,7 +135,7 @@
 			}
 			else
 			{
-				getAdresses();
+				getAdresse();
 			}
 			break;
 		default:
